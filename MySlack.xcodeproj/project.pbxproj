@@ -1,0 +1,632 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4F001EF62BA80CAA008C0CCC /* ChannelsCollectionViewCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F001EF52BA80CAA008C0CCC /* ChannelsCollectionViewCell.mm */; };
+		4F012BD12BA2BD8C0060CA7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F012BCC2BA2BD8C0060CA7D /* Assets.xcassets */; };
+		4F012BD92BA2BE9A0060CA7D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F012BD82BA2BE9A0060CA7D /* main.mm */; };
+		4F012BDF2BA2C29F0060CA7D /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F012BDD2BA2C29F0060CA7D /* AppDelegate.mm */; };
+		4F012C5F2BA368C30060CA7D /* SceneDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F012C5E2BA368C30060CA7D /* SceneDelegate.mm */; };
+		4F55D8882BA2BD44009A573B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F55D8872BA2BD44009A573B /* AppDelegate.m */; };
+		4F55D88B2BA2BD44009A573B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F55D88A2BA2BD44009A573B /* SceneDelegate.m */; };
+		4F55D88E2BA2BD44009A573B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F55D88D2BA2BD44009A573B /* ViewController.m */; };
+		4F55D8912BA2BD44009A573B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 4F55D8902BA2BD44009A573B /* Base */; };
+		4F55D8932BA2BD45009A573B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F55D8922BA2BD45009A573B /* Assets.xcassets */; };
+		4F55D8962BA2BD45009A573B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 4F55D8952BA2BD45009A573B /* Base */; };
+		4F55D8992BA2BD45009A573B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F55D8982BA2BD45009A573B /* main.m */; };
+		4F55D8B02BA2BD6B009A573B /* NanoSlackWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4F55D8A32BA2BD6B009A573B /* NanoSlackWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4F69EA902BA8590F00B43E58 /* CrownView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F69EA8F2BA8590F00B43E58 /* CrownView.mm */; };
+		4FB1FEC02BA6FC8200D07317 /* ChannelsViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1FEBF2BA6FC8200D07317 /* ChannelsViewController.mm */; };
+		4FB1FEC62BA704D000D07317 /* DynamicViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1FEC52BA704D000D07317 /* DynamicViewController.mm */; };
+		4FB1FEC92BA70B0C00D07317 /* NSObject+Foundation_IvarDescription.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1FEC82BA70B0C00D07317 /* NSObject+Foundation_IvarDescription.mm */; };
+		4FB1FECD2BA736D700D07317 /* ChannelsViewModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1FECC2BA736D700D07317 /* ChannelsViewModel.mm */; };
+		4FB1FEE02BA74A6300D07317 /* DynamicView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1FEDF2BA74A6300D07317 /* DynamicView.mm */; };
+		4FB1FEF62BA7603A00D07317 /* DynamicListPlatterCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1FEF52BA7603A00D07317 /* DynamicListPlatterCell.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4F55D8AE2BA2BD6B009A573B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F55D87B2BA2BD44009A573B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F55D8A22BA2BD6B009A573B;
+			remoteInfo = "NanoSlackWatch Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4F55D8B42BA2BD6B009A573B /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				4F55D8B02BA2BD6B009A573B /* NanoSlackWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4F001EF42BA80CAA008C0CCC /* ChannelsCollectionViewCell.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ChannelsCollectionViewCell.hpp; sourceTree = "<group>"; };
+		4F001EF52BA80CAA008C0CCC /* ChannelsCollectionViewCell.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ChannelsCollectionViewCell.mm; sourceTree = "<group>"; };
+		4F012BCC2BA2BD8C0060CA7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F012BD82BA2BE9A0060CA7D /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		4F012BDD2BA2C29F0060CA7D /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		4F012BDE2BA2C29F0060CA7D /* AppDelegate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AppDelegate.hpp; sourceTree = "<group>"; };
+		4F012BE32BA2C8D80060CA7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4F012C5D2BA368C30060CA7D /* SceneDelegate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SceneDelegate.hpp; sourceTree = "<group>"; };
+		4F012C5E2BA368C30060CA7D /* SceneDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SceneDelegate.mm; sourceTree = "<group>"; };
+		4F55D8832BA2BD44009A573B /* NanoSlack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NanoSlack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F55D8862BA2BD44009A573B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4F55D8872BA2BD44009A573B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4F55D8892BA2BD44009A573B /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		4F55D88A2BA2BD44009A573B /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		4F55D88C2BA2BD44009A573B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		4F55D88D2BA2BD44009A573B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		4F55D8902BA2BD44009A573B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4F55D8922BA2BD45009A573B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F55D8952BA2BD45009A573B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4F55D8972BA2BD45009A573B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F55D8982BA2BD45009A573B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4F55D8A32BA2BD6B009A573B /* NanoSlackWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NanoSlackWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F69EA8E2BA8590F00B43E58 /* CrownView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CrownView.hpp; sourceTree = "<group>"; };
+		4F69EA8F2BA8590F00B43E58 /* CrownView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CrownView.mm; sourceTree = "<group>"; };
+		4FB1FEBE2BA6FC8200D07317 /* ChannelsViewController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ChannelsViewController.hpp; sourceTree = "<group>"; };
+		4FB1FEBF2BA6FC8200D07317 /* ChannelsViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ChannelsViewController.mm; sourceTree = "<group>"; };
+		4FB1FEC42BA704D000D07317 /* DynamicViewController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DynamicViewController.hpp; sourceTree = "<group>"; };
+		4FB1FEC52BA704D000D07317 /* DynamicViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DynamicViewController.mm; sourceTree = "<group>"; };
+		4FB1FEC72BA70B0C00D07317 /* NSObject+Foundation_IvarDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Foundation_IvarDescription.h"; sourceTree = "<group>"; };
+		4FB1FEC82BA70B0C00D07317 /* NSObject+Foundation_IvarDescription.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSObject+Foundation_IvarDescription.mm"; sourceTree = "<group>"; };
+		4FB1FECB2BA736D700D07317 /* ChannelsViewModel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ChannelsViewModel.hpp; sourceTree = "<group>"; };
+		4FB1FECC2BA736D700D07317 /* ChannelsViewModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ChannelsViewModel.mm; sourceTree = "<group>"; };
+		4FB1FEDE2BA74A6300D07317 /* DynamicView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DynamicView.hpp; sourceTree = "<group>"; };
+		4FB1FEDF2BA74A6300D07317 /* DynamicView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DynamicView.mm; sourceTree = "<group>"; };
+		4FB1FEF42BA7603A00D07317 /* DynamicListPlatterCell.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DynamicListPlatterCell.hpp; sourceTree = "<group>"; };
+		4FB1FEF52BA7603A00D07317 /* DynamicListPlatterCell.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DynamicListPlatterCell.mm; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F55D8802BA2BD44009A573B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F55D8A02BA2BD6B009A573B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4F012BCF2BA2BD8C0060CA7D /* NanoSlackWatch */ = {
+			isa = PBXGroup;
+			children = (
+				4F012BE32BA2C8D80060CA7D /* Info.plist */,
+				4F012BCC2BA2BD8C0060CA7D /* Assets.xcassets */,
+				4F012BDE2BA2C29F0060CA7D /* AppDelegate.hpp */,
+				4F012BDD2BA2C29F0060CA7D /* AppDelegate.mm */,
+				4F012C5D2BA368C30060CA7D /* SceneDelegate.hpp */,
+				4F012C5E2BA368C30060CA7D /* SceneDelegate.mm */,
+				4F012BD82BA2BE9A0060CA7D /* main.mm */,
+				4F69EA8E2BA8590F00B43E58 /* CrownView.hpp */,
+				4F69EA8F2BA8590F00B43E58 /* CrownView.mm */,
+				4FB1FEDD2BA74A5500D07317 /* Dynamic */,
+				4FB1FECA2BA736CC00D07317 /* Channels */,
+				4FB1FEC72BA70B0C00D07317 /* NSObject+Foundation_IvarDescription.h */,
+				4FB1FEC82BA70B0C00D07317 /* NSObject+Foundation_IvarDescription.mm */,
+			);
+			path = NanoSlackWatch;
+			sourceTree = "<group>";
+		};
+		4F55D87A2BA2BD44009A573B = {
+			isa = PBXGroup;
+			children = (
+				4F012BCF2BA2BD8C0060CA7D /* NanoSlackWatch */,
+				4F55D8852BA2BD44009A573B /* NanoSlack */,
+				4F55D8842BA2BD44009A573B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4F55D8842BA2BD44009A573B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4F55D8832BA2BD44009A573B /* NanoSlack.app */,
+				4F55D8A32BA2BD6B009A573B /* NanoSlackWatch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4F55D8852BA2BD44009A573B /* NanoSlack */ = {
+			isa = PBXGroup;
+			children = (
+				4F55D8862BA2BD44009A573B /* AppDelegate.h */,
+				4F55D8872BA2BD44009A573B /* AppDelegate.m */,
+				4F55D8892BA2BD44009A573B /* SceneDelegate.h */,
+				4F55D88A2BA2BD44009A573B /* SceneDelegate.m */,
+				4F55D88C2BA2BD44009A573B /* ViewController.h */,
+				4F55D88D2BA2BD44009A573B /* ViewController.m */,
+				4F55D88F2BA2BD44009A573B /* Main.storyboard */,
+				4F55D8922BA2BD45009A573B /* Assets.xcassets */,
+				4F55D8942BA2BD45009A573B /* LaunchScreen.storyboard */,
+				4F55D8972BA2BD45009A573B /* Info.plist */,
+				4F55D8982BA2BD45009A573B /* main.m */,
+			);
+			path = NanoSlack;
+			sourceTree = "<group>";
+		};
+		4FB1FECA2BA736CC00D07317 /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+				4FB1FEBE2BA6FC8200D07317 /* ChannelsViewController.hpp */,
+				4FB1FEBF2BA6FC8200D07317 /* ChannelsViewController.mm */,
+				4FB1FECB2BA736D700D07317 /* ChannelsViewModel.hpp */,
+				4FB1FECC2BA736D700D07317 /* ChannelsViewModel.mm */,
+				4F001EF42BA80CAA008C0CCC /* ChannelsCollectionViewCell.hpp */,
+				4F001EF52BA80CAA008C0CCC /* ChannelsCollectionViewCell.mm */,
+			);
+			path = Channels;
+			sourceTree = "<group>";
+		};
+		4FB1FEDD2BA74A5500D07317 /* Dynamic */ = {
+			isa = PBXGroup;
+			children = (
+				4FB1FEDE2BA74A6300D07317 /* DynamicView.hpp */,
+				4FB1FEDF2BA74A6300D07317 /* DynamicView.mm */,
+				4FB1FEC42BA704D000D07317 /* DynamicViewController.hpp */,
+				4FB1FEC52BA704D000D07317 /* DynamicViewController.mm */,
+				4FB1FEF42BA7603A00D07317 /* DynamicListPlatterCell.hpp */,
+				4FB1FEF52BA7603A00D07317 /* DynamicListPlatterCell.mm */,
+			);
+			path = Dynamic;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4F55D8822BA2BD44009A573B /* NanoSlack */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F55D89C2BA2BD45009A573B /* Build configuration list for PBXNativeTarget "NanoSlack" */;
+			buildPhases = (
+				4F55D87F2BA2BD44009A573B /* Sources */,
+				4F55D8802BA2BD44009A573B /* Frameworks */,
+				4F55D8812BA2BD44009A573B /* Resources */,
+				4F55D8B42BA2BD6B009A573B /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F55D8AF2BA2BD6B009A573B /* PBXTargetDependency */,
+			);
+			name = NanoSlack;
+			productName = NanoSlack;
+			productReference = 4F55D8832BA2BD44009A573B /* NanoSlack.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4F55D8A22BA2BD6B009A573B /* NanoSlackWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F55D8B12BA2BD6B009A573B /* Build configuration list for PBXNativeTarget "NanoSlackWatch" */;
+			buildPhases = (
+				4F55D89F2BA2BD6B009A573B /* Sources */,
+				4F55D8A02BA2BD6B009A573B /* Frameworks */,
+				4F55D8A12BA2BD6B009A573B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NanoSlackWatch;
+			packageProductDependencies = (
+			);
+			productName = "NanoSlackWatch Watch App";
+			productReference = 4F55D8A32BA2BD6B009A573B /* NanoSlackWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4F55D87B2BA2BD44009A573B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					4F55D8822BA2BD44009A573B = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					4F55D8A22BA2BD6B009A573B = {
+						CreatedOnToolsVersion = 15.3;
+					};
+				};
+			};
+			buildConfigurationList = 4F55D87E2BA2BD44009A573B /* Build configuration list for PBXProject "MySlack" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4F55D87A2BA2BD44009A573B;
+			packageReferences = (
+			);
+			productRefGroup = 4F55D8842BA2BD44009A573B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4F55D8822BA2BD44009A573B /* NanoSlack */,
+				4F55D8A22BA2BD6B009A573B /* NanoSlackWatch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4F55D8812BA2BD44009A573B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F55D8932BA2BD45009A573B /* Assets.xcassets in Resources */,
+				4F55D8962BA2BD45009A573B /* Base in Resources */,
+				4F55D8912BA2BD44009A573B /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F55D8A12BA2BD6B009A573B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F012BD12BA2BD8C0060CA7D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4F55D87F2BA2BD44009A573B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F55D88E2BA2BD44009A573B /* ViewController.m in Sources */,
+				4F55D8882BA2BD44009A573B /* AppDelegate.m in Sources */,
+				4F55D8992BA2BD45009A573B /* main.m in Sources */,
+				4F55D88B2BA2BD44009A573B /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F55D89F2BA2BD6B009A573B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FB1FEE02BA74A6300D07317 /* DynamicView.mm in Sources */,
+				4FB1FEC62BA704D000D07317 /* DynamicViewController.mm in Sources */,
+				4FB1FEF62BA7603A00D07317 /* DynamicListPlatterCell.mm in Sources */,
+				4F012BD92BA2BE9A0060CA7D /* main.mm in Sources */,
+				4F69EA902BA8590F00B43E58 /* CrownView.mm in Sources */,
+				4FB1FEC02BA6FC8200D07317 /* ChannelsViewController.mm in Sources */,
+				4FB1FEC92BA70B0C00D07317 /* NSObject+Foundation_IvarDescription.mm in Sources */,
+				4F001EF62BA80CAA008C0CCC /* ChannelsCollectionViewCell.mm in Sources */,
+				4F012C5F2BA368C30060CA7D /* SceneDelegate.mm in Sources */,
+				4FB1FECD2BA736D700D07317 /* ChannelsViewModel.mm in Sources */,
+				4F012BDF2BA2C29F0060CA7D /* AppDelegate.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F55D8AF2BA2BD6B009A573B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F55D8A22BA2BD6B009A573B /* NanoSlackWatch */;
+			targetProxy = 4F55D8AE2BA2BD6B009A573B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4F55D88F2BA2BD44009A573B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F55D8902BA2BD44009A573B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4F55D8942BA2BD45009A573B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F55D8952BA2BD45009A573B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4F55D89A2BA2BD45009A573B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-fcxx-modules",
+				);
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_INTEROP_MODE = objcxx;
+			};
+			name = Debug;
+		};
+		4F55D89B2BA2BD45009A573B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-fcxx-modules",
+				);
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_INTEROP_MODE = objcxx;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4F55D89D2BA2BD45009A573B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NanoSlack/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.NanoSlack;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4F55D89E2BA2BD45009A573B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NanoSlack/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.NanoSlack;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4F55D8B22BA2BD6B009A573B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NanoSlackWatch/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NanoSlackWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.pookjw.NanoSlack;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.NanoSlack.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.4;
+			};
+			name = Debug;
+		};
+		4F55D8B32BA2BD6B009A573B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P53D29U9LJ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NanoSlackWatch/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NanoSlackWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.pookjw.NanoSlack;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.NanoSlack.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.4;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4F55D87E2BA2BD44009A573B /* Build configuration list for PBXProject "MySlack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F55D89A2BA2BD45009A573B /* Debug */,
+				4F55D89B2BA2BD45009A573B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F55D89C2BA2BD45009A573B /* Build configuration list for PBXNativeTarget "NanoSlack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F55D89D2BA2BD45009A573B /* Debug */,
+				4F55D89E2BA2BD45009A573B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F55D8B12BA2BD6B009A573B /* Build configuration list for PBXNativeTarget "NanoSlackWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F55D8B22BA2BD6B009A573B /* Debug */,
+				4F55D8B32BA2BD6B009A573B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4F55D87B2BA2BD44009A573B /* Project object */;
+}
