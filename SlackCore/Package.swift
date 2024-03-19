@@ -20,7 +20,7 @@ let package = Package(
         .package(url: "https://github.com/swift-server/async-http-client.git", branch: "main"),
         .package(url: "https://github.com/apple/swift-testing.git", branch: "main"),
 //        .package(url: "https://github.com/apple/swift-foundation.git", branch: "main"),
-//        .package(path: "../my-swift-foundation"),
+//        .package(path: "../../my-swift-foundation"),
         .package(url: "https://github.com/apple/swift-nio.git", branch: "main")
     ],
     targets: [
@@ -32,7 +32,8 @@ let package = Package(
                 .product(name: "_NIOFileSystem", package: "swift-nio")
             ],
             swiftSettings: [
-                .interoperabilityMode(.Cxx)
+                .interoperabilityMode(.Cxx),
+                .enableExperimentalFeature("RawLayout")
             ]
         ),
         .testTarget(

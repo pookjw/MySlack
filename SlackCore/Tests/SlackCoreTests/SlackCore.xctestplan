@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "A68D0271-5E06-45C6-A1ED-FC927E45BF55",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "environmentVariableEntries" : [
+      {
+        "key" : "SWT_SELECTED_TAGS",
+        "value" : "testGetConversations"
+      }
+    ]
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "SlackCoreTests",
+        "name" : "SlackCoreTests"
+      }
+    }
+  ],
+  "version" : 1
+}

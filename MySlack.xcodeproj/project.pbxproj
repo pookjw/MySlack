@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,7 @@
 		4F55D8962BA2BD45009A573B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 4F55D8952BA2BD45009A573B /* Base */; };
 		4F55D8992BA2BD45009A573B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F55D8982BA2BD45009A573B /* main.m */; };
 		4F55D8B02BA2BD6B009A573B /* NanoSlackWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4F55D8A32BA2BD6B009A573B /* NanoSlackWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4F665F3B2BA8AA380099655A /* SlackCore in Frameworks */ = {isa = PBXBuildFile; productRef = 4F665F3A2BA8AA380099655A /* SlackCore */; };
 		4F69EA902BA8590F00B43E58 /* CrownView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F69EA8F2BA8590F00B43E58 /* CrownView.mm */; };
 		4FB1FEC02BA6FC8200D07317 /* ChannelsViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1FEBF2BA6FC8200D07317 /* ChannelsViewController.mm */; };
 		4FB1FEC62BA704D000D07317 /* DynamicViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1FEC52BA704D000D07317 /* DynamicViewController.mm */; };
@@ -104,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F665F3B2BA8AA380099655A /* SlackCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +230,7 @@
 			);
 			name = NanoSlackWatch;
 			packageProductDependencies = (
+				4F665F3A2BA8AA380099655A /* SlackCore */,
 			);
 			productName = "NanoSlackWatch Watch App";
 			productReference = 4F55D8A32BA2BD6B009A573B /* NanoSlackWatch.app */;
@@ -261,6 +264,7 @@
 			);
 			mainGroup = 4F55D87A2BA2BD44009A573B;
 			packageReferences = (
+				4F665F392BA8AA380099655A /* XCLocalSwiftPackageReference "SlackCore" */,
 			);
 			productRefGroup = 4F55D8842BA2BD44009A573B /* Products */;
 			projectDirPath = "";
@@ -627,6 +631,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		4F665F392BA8AA380099655A /* XCLocalSwiftPackageReference "SlackCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = SlackCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4F665F3A2BA8AA380099655A /* SlackCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SlackCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4F55D87B2BA2BD44009A573B /* Project object */;
 }

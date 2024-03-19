@@ -1,5 +1,5 @@
 {
-  "originHash" : "313e905e1692d6798efc2d6b30f7b24f97f2104e5b1ec819c3bef714974e59fb",
+  "originHash" : "876c7489d7c28d4a94938bba320c4738abeaa6cb69ca67f6009d03a5a4028f92",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -61,7 +61,7 @@
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
         "branch" : "main",
-        "revision" : "b92e058cf80fd6ba2e5d288a21d455f5134e39d7"
+        "revision" : "1e2b3e34afee7d68d99d982b72f9a17a40624c66"
       }
     },
     {
@@ -110,30 +110,12 @@
       }
     },
     {
-      "identity" : "swift-syntax",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-syntax.git",
-      "state" : {
-        "revision" : "fa8f95c2d536d6620cc2f504ebe8a6167c9fc2dd",
-        "version" : "510.0.1"
-      }
-    },
-    {
       "identity" : "swift-system",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-system.git",
       "state" : {
         "revision" : "025bcb1165deab2e20d4eaba79967ce73013f496",
         "version" : "1.2.1"
-      }
-    },
-    {
-      "identity" : "swift-testing",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-testing.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "f0eddecf8430f3363a9f506c640d77ced1bf7abd"
       }
     }
   ],

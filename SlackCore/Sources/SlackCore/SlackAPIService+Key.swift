@@ -6,7 +6,7 @@
 //
 
 extension SlackAPIService {
-    var apiKey: String {
+    nonisolated var apiKey: String {
         <#String##Slack User OAuth Token#>
     }
 }
