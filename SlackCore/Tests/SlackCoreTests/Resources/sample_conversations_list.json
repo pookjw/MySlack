@@ -1,0 +1,128 @@
+{
+    "ok": true,
+    "channels": [
+        {
+            "id": "C06P1LS0LEA",
+            "name": "general",
+            "is_channel": true,
+            "is_group": false,
+            "is_im": false,
+            "is_mpim": false,
+            "is_private": false,
+            "created": 1710298128,
+            "is_archived": false,
+            "is_general": true,
+            "unlinked": 0,
+            "name_normalized": "general",
+            "is_shared": false,
+            "is_org_shared": false,
+            "is_pending_ext_shared": false,
+            "pending_shared": [],
+            "context_team_id": "T06PAPG94UU",
+            "updated": 1710298128152,
+            "parent_conversation": null,
+            "creator": "U06PLVBNDRP",
+            "is_ext_shared": false,
+            "shared_team_ids": [
+                "T06PAPG94UU"
+            ],
+            "pending_connected_team_ids": [],
+            "is_member": true,
+            "topic": {
+                "value": "",
+                "creator": "",
+                "last_set": 0
+            },
+            "purpose": {
+                "value": "This is the one channel that will always include everyone. It’s a great spot for announcements and team-wide conversations.",
+                "creator": "U06PLVBNDRP",
+                "last_set": 1710298128
+            },
+            "previous_names": [],
+            "num_members": 1
+        },
+        {
+            "id": "C06PLVBPJ49",
+            "name": "random",
+            "is_channel": true,
+            "is_group": false,
+            "is_im": false,
+            "is_mpim": false,
+            "is_private": false,
+            "created": 1710298128,
+            "is_archived": false,
+            "is_general": false,
+            "unlinked": 0,
+            "name_normalized": "random",
+            "is_shared": false,
+            "is_org_shared": false,
+            "is_pending_ext_shared": false,
+            "pending_shared": [],
+            "context_team_id": "T06PAPG94UU",
+            "updated": 1710298128385,
+            "parent_conversation": null,
+            "creator": "U06PLVBNDRP",
+            "is_ext_shared": false,
+            "shared_team_ids": [
+                "T06PAPG94UU"
+            ],
+            "pending_connected_team_ids": [],
+            "is_member": true,
+            "topic": {
+                "value": "",
+                "creator": "",
+                "last_set": 0
+            },
+            "purpose": {
+                "value": "This channel is for... well, everything else. It’s a place for team jokes, spur-of-the-moment ideas, and funny GIFs. Go wild!",
+                "creator": "U06PLVBNDRP",
+                "last_set": 1710298128
+            },
+            "previous_names": [],
+            "num_members": 1
+        },
+        {
+            "id": "C06PXE7U33J",
+            "name": "test",
+            "is_channel": true,
+            "is_group": false,
+            "is_im": false,
+            "is_mpim": false,
+            "is_private": false,
+            "created": 1710305738,
+            "is_archived": false,
+            "is_general": false,
+            "unlinked": 0,
+            "name_normalized": "test",
+            "is_shared": false,
+            "is_org_shared": false,
+            "is_pending_ext_shared": false,
+            "pending_shared": [],
+            "context_team_id": "T06PAPG94UU",
+            "updated": 1710305738823,
+            "parent_conversation": null,
+            "creator": "U06PLVBNDRP",
+            "is_ext_shared": false,
+            "shared_team_ids": [
+                "T06PAPG94UU"
+            ],
+            "pending_connected_team_ids": [],
+            "is_member": false,
+            "topic": {
+                "value": "",
+                "creator": "",
+                "last_set": 0
+            },
+            "purpose": {
+                "value": "",
+                "creator": "",
+                "last_set": 0
+            },
+            "previous_names": [],
+            "num_members": 0
+        }
+    ],
+    "response_metadata": {
+        "next_cursor": ""
+    }
+}

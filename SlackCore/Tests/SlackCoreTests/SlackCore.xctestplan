@@ -11,6 +11,7 @@
   "defaultOptions" : {
     "environmentVariableEntries" : [
       {
+        "enabled" : false,
         "key" : "SWT_SELECTED_TAGS",
         "value" : "testGetConversations"
       }

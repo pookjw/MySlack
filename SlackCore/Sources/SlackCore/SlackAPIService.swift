@@ -6,9 +6,10 @@
 //
 
 import Foundation
-import AsyncHTTPClient
-import CxxStdlib
 
+// https://api.slack.com/methods
+
+@_expose(Cxx)
 @globalActor
 public actor SlackAPIService {
     public static let shared: SlackAPIService = .init()
@@ -17,44 +18,30 @@ public actor SlackAPIService {
         .shared
     }
     
-    public func conversations() async throws -> ConversationsResponse {
-        try await request(path: "/api/conversations.list", queryItems: nil)
-    }
-    
-    private func request<T: Decodable>(path: String, queryItems: [URLQueryItem]?) async throws -> T {
-        var components: URLComponents = .init()
-        components.scheme = "https"
-        components.host = "slack.com"
-        components.path = path
-        components.queryItems = queryItems
+    @_expose(Cxx, "getConversationsDictionary")
+    public nonisolated func cxxInterop_getConversationsDictionary(completionHandler: UnsafeRawPointer) -> Progress {
+        typealias CompletionHandlerType = @convention(block) @Sendable (NSDictionary?, Swift.Error?) -> Void
         
-        let url: URL = components.url!
+        let copiedCompletionHandler: AnyObject = unsafeBitCast(completionHandler, to: AnyObject.self).copy() as AnyObject
         
-        var request: HTTPClientRequest = .init(url: url.path(percentEncoded: true))
-        request.method = .GET
-        request.headers = .init(
-            [
-                ("Authorization", "Bearer \(apiKey)")
-            ]
-        )
-        
-        let httpClient: HTTPClient = .init(eventLoopGroupProvider: .singleton)
-        let response: HTTPClientResponse = try await httpClient.execute(request, timeout: .minutes(1))
-        
-        var data: Data
-        if let contentLength: Int = response.headers.first(name: "Content-Length").flatMap(Int.init) {
-            data = .init(capacity: contentLength)
-        } else {
-            data = .init()
-        }
-        
-        for try await buffer in response.body {
-            buffer.readableBytesView.withContiguousStorageIfAvailable { p in
-                data.append(p.baseAddress!, count: p.count)
+        let task: Task<Void, Never> = .init { 
+            let castedCompletionHandler: CompletionHandlerType = unsafeBitCast(copiedCompletionHandler, to: CompletionHandlerType.self)
+            
+            do {
+                let data: Data = try await _conversations()
+                let dictionary: NSDictionary = try JSONSerialization.jsonObject(with: data, options: [.json5Allowed]) as! NSDictionary
+                castedCompletionHandler(dictionary, nil)
+            } catch {
+                castedCompletionHandler(nil, error)
             }
         }
         
-        assert(response.headers.first(name: "Content-Length").flatMap(Int.init)! == data.count)
-        fatalError()
+        let progress: Progress = .init(totalUnitCount: 1)
+        
+        progress.cancellationHandler = {
+            task.cancel()
+        }
+        
+        return progress
     }
 }

@@ -8,6 +8,7 @@
 #import "ChannelsViewModel.hpp"
 #import <objc/message.h>
 #import <objc/runtime.h>
+@import SlackCore;
 
 __attribute__((objc_direct_members))
 @interface ChannelsViewModel ()
@@ -38,14 +39,123 @@ __attribute__((objc_direct_members))
     id dataSource = self.dataSource;
     
     dispatch_async(self.queue, ^{
-        id snapshot = [objc_lookUpClass("NSDiffableDataSourceSnapshot") new];
-        
-        reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(snapshot, sel_registerName("appendSectionsWithIdentifiers:"), @[@0]);
-        
-        reinterpret_cast<void (*)(id, SEL, id, id)>(objc_msgSend)(snapshot, sel_registerName("appendItemsWithIdentifiers:intoSectionWithIdentifier:"), @[@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10], @0);
-        
-        reinterpret_cast<void (*)(id, SEL, id, BOOL, id)>(objc_msgSend)(dataSource, sel_registerName("applySnapshot:animatingDifferences:completion:"), snapshot, YES, completionaHandler);
-        [snapshot release];
+        SlackCore::SlackAPIService::getSharedInstance().getConversationsDictionary(^(NSDictionary * _Nullable dictionary, NSError * _Nullable error) {
+            assert(!error);
+            
+            dispatch_async(self.queue, ^{
+                id snapshot = [objc_lookUpClass("NSDiffableDataSourceSnapshot") new];
+                
+                auto channels = [NSMutableArray<ChannelsItemModel *> array];
+                auto groups = [NSMutableArray array];
+                auto ims = [NSMutableArray array];
+                auto mpims = [NSMutableArray array];
+                auto privates = [NSMutableArray array];
+                
+                for (NSDictionary *channel in dictionary[@"channels"]) {
+                    ChannelsItemModel *itemModel = [[ChannelsItemModel alloc] initWithType:ChannelsItemModelTypeChannel];
+                    itemModel.userInfo = @{ChannelsItemModelChannelKey: channel};
+                    
+                    BOOL is_channel = static_cast<NSNumber *>(channel[@"is_channel"]).boolValue;
+                    
+                    if (is_channel) {
+                        [channels addObject:itemModel];
+                        [itemModel release];
+                        continue;
+                    }
+                    
+                    BOOL is_group = static_cast<NSNumber *>(channel[@"is_group"]).boolValue;
+                    
+                    if (is_group) {
+                        [groups addObject:itemModel];
+                        [itemModel release];
+                        continue;
+                    }
+                    
+                    BOOL is_im = static_cast<NSNumber *>(channel[@"is_im"]).boolValue;
+                    
+                    if (is_im) {
+                        [ims addObject:itemModel];
+                        [itemModel release];
+                        continue;
+                    }
+                    
+                    BOOL is_mpim = static_cast<NSNumber *>(channel[@"is_mpim"]).boolValue;
+                    
+                    if (is_mpim) {
+                        [mpims addObject:itemModel];
+                        [itemModel release];
+                        continue;
+                    }
+                    
+                    BOOL is_private = static_cast<NSNumber *>(channel[@"is_private"]).boolValue;
+                    
+                    if (is_private) {
+                        [privates addObject:itemModel];
+                        [itemModel release];
+                        continue;
+                    }
+                    
+                    [itemModel release];
+                }
+                
+                //
+                
+                if (channels.count > 0) {
+                    ChannelsSectionModel *channelsSectionModel = [[ChannelsSectionModel alloc] initWithType:ChannelsSectionModelTypeChannels];
+                    
+                    reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(snapshot, sel_registerName("appendSectionsWithIdentifiers:"), @[channelsSectionModel]);
+                    
+                    reinterpret_cast<void (*)(id, SEL, id, id)>(objc_msgSend)(snapshot, sel_registerName("appendItemsWithIdentifiers:intoSectionWithIdentifier:"), channels, channelsSectionModel);
+                    
+                    [channelsSectionModel release];
+                }
+                
+                if (groups.count > 0) {
+                    ChannelsSectionModel *groupsSectionModel = [[ChannelsSectionModel alloc] initWithType:ChannelsSectionModelTypeGroups];
+                    
+                    reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(snapshot, sel_registerName("appendSectionsWithIdentifiers:"), @[groupsSectionModel]);
+                    
+                    reinterpret_cast<void (*)(id, SEL, id, id)>(objc_msgSend)(snapshot, sel_registerName("appendItemsWithIdentifiers:intoSectionWithIdentifier:"), groups, groupsSectionModel);
+                    
+                    [groupsSectionModel release];
+                }
+                
+                if (ims.count > 0) {
+                    ChannelsSectionModel *imsSectionModel = [[ChannelsSectionModel alloc] initWithType:ChannelsSectionModelTypeIms];
+                    
+                    reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(snapshot, sel_registerName("appendSectionsWithIdentifiers:"), @[imsSectionModel]);
+                    
+                    reinterpret_cast<void (*)(id, SEL, id, id)>(objc_msgSend)(snapshot, sel_registerName("appendItemsWithIdentifiers:intoSectionWithIdentifier:"), ims, imsSectionModel);
+                    
+                    [imsSectionModel release];
+                }
+                
+                if (mpims.count > 0) {
+                    ChannelsSectionModel *mpimsSectionModel = [[ChannelsSectionModel alloc] initWithType:ChannelsSectionModelTypeMims];
+                    
+                    reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(snapshot, sel_registerName("appendSectionsWithIdentifiers:"), @[mpimsSectionModel]);
+                    
+                    reinterpret_cast<void (*)(id, SEL, id, id)>(objc_msgSend)(snapshot, sel_registerName("appendItemsWithIdentifiers:intoSectionWithIdentifier:"), mpims, mpimsSectionModel);
+                    
+                    [mpimsSectionModel release];
+                }
+                
+                if (privates.count > 0) {
+                    ChannelsSectionModel *privatesSectionModel = [[ChannelsSectionModel alloc] initWithType:ChannelsSectionModelTypeMims];
+                    
+                    reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(snapshot, sel_registerName("appendSectionsWithIdentifiers:"), @[privatesSectionModel]);
+                    
+                    reinterpret_cast<void (*)(id, SEL, id, id)>(objc_msgSend)(snapshot, sel_registerName("appendItemsWithIdentifiers:intoSectionWithIdentifier:"), privates, privatesSectionModel);
+                    
+                    [privatesSectionModel release];
+                }
+                
+                //
+                
+                reinterpret_cast<void (*)(id, SEL, id, BOOL, id)>(objc_msgSend)(dataSource, sel_registerName("applySnapshot:animatingDifferences:completion:"), snapshot, YES, completionaHandler);
+                [snapshot release];
+            });
+        });
     });
 }
 

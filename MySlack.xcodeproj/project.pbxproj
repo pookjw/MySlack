@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4F001EF62BA80CAA008C0CCC /* ChannelsCollectionViewCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F001EF52BA80CAA008C0CCC /* ChannelsCollectionViewCell.mm */; };
+		4F0090A52BA9C87D00AF898E /* ChannelsSectionModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F0090A42BA9C87D00AF898E /* ChannelsSectionModel.mm */; };
+		4F0090A82BA9CA2400AF898E /* ChannelsItemModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F0090A72BA9CA2400AF898E /* ChannelsItemModel.mm */; };
+		4F0090AD2BA9FB7400AF898E /* ChannelsCollectionViewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0090AC2BA9FB7400AF898E /* ChannelsCollectionViewCellView.swift */; };
 		4F012BD12BA2BD8C0060CA7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F012BCC2BA2BD8C0060CA7D /* Assets.xcassets */; };
 		4F012BD92BA2BE9A0060CA7D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F012BD82BA2BE9A0060CA7D /* main.mm */; };
 		4F012BDF2BA2C29F0060CA7D /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F012BDD2BA2C29F0060CA7D /* AppDelegate.mm */; };
@@ -57,6 +60,12 @@
 /* Begin PBXFileReference section */
 		4F001EF42BA80CAA008C0CCC /* ChannelsCollectionViewCell.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ChannelsCollectionViewCell.hpp; sourceTree = "<group>"; };
 		4F001EF52BA80CAA008C0CCC /* ChannelsCollectionViewCell.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ChannelsCollectionViewCell.mm; sourceTree = "<group>"; };
+		4F0090A32BA9C87D00AF898E /* ChannelsSectionModel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ChannelsSectionModel.hpp; sourceTree = "<group>"; };
+		4F0090A42BA9C87D00AF898E /* ChannelsSectionModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ChannelsSectionModel.mm; sourceTree = "<group>"; };
+		4F0090A62BA9CA2400AF898E /* ChannelsItemModel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ChannelsItemModel.hpp; sourceTree = "<group>"; };
+		4F0090A72BA9CA2400AF898E /* ChannelsItemModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ChannelsItemModel.mm; sourceTree = "<group>"; };
+		4F0090A92BA9FB6700AF898E /* NanoSlackWatch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NanoSlackWatch-Bridging-Header.h"; sourceTree = "<group>"; };
+		4F0090AC2BA9FB7400AF898E /* ChannelsCollectionViewCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsCollectionViewCellView.swift; sourceTree = "<group>"; };
 		4F012BCC2BA2BD8C0060CA7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F012BD82BA2BE9A0060CA7D /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		4F012BDD2BA2C29F0060CA7D /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -128,6 +137,7 @@
 				4FB1FECA2BA736CC00D07317 /* Channels */,
 				4FB1FEC72BA70B0C00D07317 /* NSObject+Foundation_IvarDescription.h */,
 				4FB1FEC82BA70B0C00D07317 /* NSObject+Foundation_IvarDescription.mm */,
+				4F0090A92BA9FB6700AF898E /* NanoSlackWatch-Bridging-Header.h */,
 			);
 			path = NanoSlackWatch;
 			sourceTree = "<group>";
@@ -175,8 +185,13 @@
 				4FB1FEBF2BA6FC8200D07317 /* ChannelsViewController.mm */,
 				4FB1FECB2BA736D700D07317 /* ChannelsViewModel.hpp */,
 				4FB1FECC2BA736D700D07317 /* ChannelsViewModel.mm */,
+				4F0090A32BA9C87D00AF898E /* ChannelsSectionModel.hpp */,
+				4F0090A42BA9C87D00AF898E /* ChannelsSectionModel.mm */,
+				4F0090A62BA9CA2400AF898E /* ChannelsItemModel.hpp */,
+				4F0090A72BA9CA2400AF898E /* ChannelsItemModel.mm */,
 				4F001EF42BA80CAA008C0CCC /* ChannelsCollectionViewCell.hpp */,
 				4F001EF52BA80CAA008C0CCC /* ChannelsCollectionViewCell.mm */,
+				4F0090AC2BA9FB7400AF898E /* ChannelsCollectionViewCellView.swift */,
 			);
 			path = Channels;
 			sourceTree = "<group>";
@@ -251,6 +266,7 @@
 					};
 					4F55D8A22BA2BD6B009A573B = {
 						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
 					};
 				};
 			};
@@ -320,10 +336,13 @@
 				4F69EA902BA8590F00B43E58 /* CrownView.mm in Sources */,
 				4FB1FEC02BA6FC8200D07317 /* ChannelsViewController.mm in Sources */,
 				4FB1FEC92BA70B0C00D07317 /* NSObject+Foundation_IvarDescription.mm in Sources */,
+				4F0090AD2BA9FB7400AF898E /* ChannelsCollectionViewCellView.swift in Sources */,
 				4F001EF62BA80CAA008C0CCC /* ChannelsCollectionViewCell.mm in Sources */,
 				4F012C5F2BA368C30060CA7D /* SceneDelegate.mm in Sources */,
+				4F0090A82BA9CA2400AF898E /* ChannelsItemModel.mm in Sources */,
 				4FB1FECD2BA736D700D07317 /* ChannelsViewModel.mm in Sources */,
 				4F012BDF2BA2C29F0060CA7D /* AppDelegate.mm in Sources */,
+				4F0090A52BA9C87D00AF898E /* ChannelsSectionModel.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +505,7 @@
 		4F55D89D2BA2BD45009A573B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -513,6 +533,7 @@
 		4F55D89E2BA2BD45009A573B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -542,6 +563,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P53D29U9LJ;
@@ -562,6 +584,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "NanoSlackWatch/NanoSlackWatch-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -574,6 +597,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P53D29U9LJ;
@@ -594,6 +618,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "NanoSlackWatch/NanoSlackWatch-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 10.4;

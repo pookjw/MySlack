@@ -122,8 +122,8 @@ __attribute__((objc_direct_members))
     
     if (cellRegistration) return cellRegistration;
     
-    cellRegistration = reinterpret_cast<id (*)(Class, SEL, Class, id)>(objc_msgSend)(objc_lookUpClass("UICollectionViewCellRegistration"), sel_registerName("registrationWithCellClass:configurationHandler:"), ChannelsCollectionViewCell.dynamicIsa, ^(ChannelsCollectionViewCell *cell, NSIndexPath *indexPath, id item) {
-        
+    cellRegistration = reinterpret_cast<id (*)(Class, SEL, Class, id)>(objc_msgSend)(objc_lookUpClass("UICollectionViewCellRegistration"), sel_registerName("registrationWithCellClass:configurationHandler:"), ChannelsCollectionViewCell.dynamicIsa, ^(ChannelsCollectionViewCell *cell, NSIndexPath *indexPath, ChannelsItemModel *item) {
+        [cell updateItemModel:item];
     });
     
     object_setInstanceVariable(self, "_cellRegistration", [cellRegistration retain]);
@@ -133,7 +133,7 @@ __attribute__((objc_direct_members))
 - (id)makeDataSource __attribute__((objc_direct)) {
     id cellRegistration = self.cellRegistration;
     
-    id dataSource = reinterpret_cast<id (*)(id, SEL, id, id)>(objc_msgSend)([objc_lookUpClass("UICollectionViewDiffableDataSource") alloc], sel_registerName("initWithCollectionView:cellProvider:"), self.view, ^id _Nullable(id  _Nonnull collectionView, NSIndexPath * _Nonnull indexPath, id  _Nonnull itemIdentifier) {
+    id dataSource = reinterpret_cast<id (*)(id, SEL, id, id)>(objc_msgSend)([objc_lookUpClass("UICollectionViewDiffableDataSource") alloc], sel_registerName("initWithCollectionView:cellProvider:"), self.view, ^id _Nullable(id  _Nonnull collectionView, NSIndexPath * _Nonnull indexPath, ChannelsItemModel * _Nonnull itemIdentifier) {
         id cell = reinterpret_cast<id (*)(id, SEL, id, id, id)>(objc_msgSend)(collectionView, sel_registerName("dequeueConfiguredReusableCellWithRegistration:forIndexPath:item:"), cellRegistration, indexPath, itemIdentifier);
         
         return cell;

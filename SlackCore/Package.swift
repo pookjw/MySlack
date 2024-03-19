@@ -42,6 +42,9 @@ let package = Package(
                 .byName(name: "SlackCore"),
                 .product(name: "Testing", package: "swift-testing")
             ],
+            resources: [
+                .process("Resources")
+            ],
             swiftSettings: [
                 .interoperabilityMode(.Cxx)
             ]

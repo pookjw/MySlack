@@ -6,6 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ChannelsSectionModel.hpp"
+#import "ChannelsItemModel.hpp"
 
 NS_ASSUME_NONNULL_BEGIN
 

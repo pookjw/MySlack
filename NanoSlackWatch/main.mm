@@ -9,7 +9,6 @@
 #import <dlfcn.h>
 #import "AppDelegate.hpp"
 #import "NSObject+Foundation_IvarDescription.h"
-@import SlackCore;
 
 UIKIT_EXTERN int UIApplicationMain(int argc, char * _Nullable argv[_Nonnull], NSString * _Nullable principalClassName, NSString * _Nullable delegateClassName);
 UIKIT_EXTERN NSURL *_restorationPath(NSString *);
@@ -20,8 +19,6 @@ int main(int argc, char * argv[]) {
     // TODO: WatchKit tbd
     void *watchKit = dlopen("/System/Library/Frameworks/WatchKit.framework/WatchKit", RTLD_NOW);
     assert(watchKit);
-    
-//    SlackCore::SlackAPIService::ConversationsResponse;
     
     // PUICListCollectionViewLayoutDelegate PUICListCollectionViewDelegate
     NSLog(@"%@", [NSObject _fd__protocolDescriptionForProtocol:NSProtocolFromString(@"PUICCrownInputSequencerDelegate")]);
