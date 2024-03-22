@@ -44,6 +44,9 @@ OBJC_EXPORT id _Nullable objc_msgSend_noarg(id _Nullable self, SEL _Nonnull _cmd
     id navigationController = reinterpret_cast<id (*)(id, SEL, id)>(objc_msgSend)([objc_lookUpClass("PUICNavigationController") alloc], sel_registerName("initWithRootViewController:"), channelsViewController);
     [channelsViewController release];
     
+    id navigationBar = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(navigationController, sel_registerName("navigationBar"));
+    reinterpret_cast<void (*)(id, SEL, BOOL)>(objc_msgSend)(navigationBar, sel_registerName("setPrefersLargeTitles:"), YES);
+    
     reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(window, sel_registerName("setRootViewController:"), navigationController);
     [navigationController release];
     

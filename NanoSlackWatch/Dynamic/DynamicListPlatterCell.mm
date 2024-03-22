@@ -24,19 +24,19 @@ OBJC_EXPORT id objc_msgSendSuper2(void);
     [super registerMethodsIntoIsa:isa implIsa:implIsa];
     
     IMP prepareForReuse = class_getMethodImplementation(implIsa, @selector(prepareForReuse));
-    class_addMethod(isa, @selector(prepareForReuse), prepareForReuse, NULL);
+    assert(class_addMethod(isa, @selector(prepareForReuse), prepareForReuse, NULL));
     
     IMP isSelected = class_getMethodImplementation(implIsa, @selector(isSelected));
-    class_addMethod(isa, @selector(isSelected), isSelected, NULL);
+    assert(class_addMethod(isa, @selector(isSelected), isSelected, NULL));
     
     IMP setSelected = class_getMethodImplementation(implIsa, @selector(setSelected:));
-    class_addMethod(isa, @selector(setSelected:), setSelected, NULL);
+    assert(class_addMethod(isa, @selector(setSelected:), setSelected, NULL));
     
     IMP isHighlighted = class_getMethodImplementation(implIsa, @selector(isHighlighted));
-    class_addMethod(isa, @selector(isHighlighted), isHighlighted, NULL);
+    assert(class_addMethod(isa, @selector(isHighlighted), isHighlighted, NULL));
     
     IMP setHighlighted = class_getMethodImplementation(implIsa, @selector(setHighlighted:));
-    class_addMethod(isa, @selector(setHighlighted:), setHighlighted, NULL);
+    assert(class_addMethod(isa, @selector(setHighlighted:), setHighlighted, NULL));
 }
 
 - (void)prepareForReuse {

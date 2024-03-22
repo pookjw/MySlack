@@ -10,6 +10,8 @@
 #import <objc/runtime.h>
 #import "ChannelsViewModel.hpp"
 #import "ChannelsCollectionViewCell.hpp"
+#import "ProfilesViewController.hpp"
+#import "ThreadsViewController.hpp"
 
 __attribute__((objc_direct_members))
 @interface ChannelsViewController ()
@@ -49,7 +51,38 @@ __attribute__((objc_direct_members))
     [super registerMethodsIntoIsa:isa implIsa:implIsa];
     
     IMP collectionView_trailingSwipeActionsConfigurationForItemAtIndexPath = class_getMethodImplementation(implIsa, @selector(collectionView:trailingSwipeActionsConfigurationForItemAtIndexPath:));
-    class_addMethod(isa, @selector(collectionView:trailingSwipeActionsConfigurationForItemAtIndexPath:), collectionView_trailingSwipeActionsConfigurationForItemAtIndexPath, NULL);
+    assert(class_addMethod(isa, @selector(collectionView:trailingSwipeActionsConfigurationForItemAtIndexPath:), collectionView_trailingSwipeActionsConfigurationForItemAtIndexPath, NULL));
+    
+    IMP updateSearchResultsForSearchController = class_getMethodImplementation(implIsa, @selector(updateSearchResultsForSearchController:));
+    assert(class_addMethod(isa, @selector(updateSearchResultsForSearchController:), updateSearchResultsForSearchController, NULL));
+    
+    IMP collectionView_didSelectItemAtIndexPath = class_getMethodImplementation(implIsa, @selector(collectionView:didSelectItemAtIndexPath:));
+    assert(class_addMethod(isa, @selector(collectionView:didSelectItemAtIndexPath:), collectionView_didSelectItemAtIndexPath, NULL));
+    
+    IMP profileBarButtomItemDidTrigger = class_getMethodImplementation(implIsa, @selector(profileBarButtomItemDidTrigger:));
+    assert(class_addMethod(isa, @selector(profileBarButtomItemDidTrigger:), profileBarButtomItemDidTrigger, NULL));
+    
+    IMP bookmarkBarButtomItemDidTrigger = class_getMethodImplementation(implIsa, @selector(bookmarkBarButtomItemDidTrigger:));
+    assert(class_addMethod(isa, @selector(bookmarkBarButtomItemDidTrigger:), bookmarkBarButtomItemDidTrigger, NULL));
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        id navigationItem = self.navigationItem;
+        
+        reinterpret_cast<void (*)(id, SEL, NSInteger)>(objc_msgSend)(navigationItem, sel_registerName("setLargeTitleDisplayMode:"), 1);
+        reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(navigationItem, sel_registerName("setTitle:"), @"Slack");
+        
+        id profileBarButtonItem = reinterpret_cast<id (*)(id, SEL, id, NSInteger, id, SEL)>(objc_msgSend)([objc_lookUpClass("UIBarButtonItem") alloc], sel_registerName("initWithImage:style:target:action:"), [UIImage systemImageNamed:@"person.crop.circle"], 0, self, @selector(profileBarButtomItemDidTrigger:));
+        reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(navigationItem, sel_registerName("setLeftBarButtonItems:"), @[profileBarButtonItem]);
+        [profileBarButtonItem release];
+        
+        id bookmarkedBarButtonItem = reinterpret_cast<id (*)(id, SEL, id, NSInteger, id, SEL)>(objc_msgSend)([objc_lookUpClass("UIBarButtonItem") alloc], sel_registerName("initWithImage:style:target:action:"), [UIImage systemImageNamed:@"bookmark"], 0, self, @selector(bookmarkBarButtomItemDidTrigger:));
+        reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(navigationItem, sel_registerName("setRightBarButtonItems:"), @[bookmarkedBarButtonItem]);
+        [bookmarkedBarButtonItem release];
+    }
+    
+    return self;
 }
 
 - (void)dealloc {
@@ -64,20 +97,15 @@ __attribute__((objc_direct_members))
     [super dealloc];
 }
 
-- (NSInteger)puic_statusBarPlacement {
-    NSInteger puic_statusBarPlacement;
-    object_getInstanceVariable(self, "_nsw_puic_statusBarPlacement", reinterpret_cast<void **>(&puic_statusBarPlacement));
-    return puic_statusBarPlacement;
-}
-
 - (void)loadView {
     id collectionViewLayout = [objc_lookUpClass("PUICListCollectionViewLayout") new];
     reinterpret_cast<void (*)(id, SEL, BOOL)>(objc_msgSend)(collectionViewLayout, sel_registerName("setCurvesBottom:"), YES);
     reinterpret_cast<void (*)(id, SEL, BOOL)>(objc_msgSend)(collectionViewLayout, sel_registerName("setCurvesTop:"), YES);
     reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(collectionViewLayout, sel_registerName("setDelegate:"), self);
     
-    // PUICCrownIndicatorContext 커스턴
+    // PUICCrownIndicatorContext 커스텀
     id collectionView = reinterpret_cast<id (*)(id, SEL, CGRect, id)>(objc_msgSend)([objc_lookUpClass("PUICListCollectionView") alloc], sel_registerName("initWithFrame:collectionViewLayout:"), CGRectNull, collectionViewLayout);
+    reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(collectionView, sel_registerName("setDelegate:"), self);
     
     [collectionViewLayout release];
     
@@ -89,18 +117,17 @@ __attribute__((objc_direct_members))
 - (void)viewIsAppearing:(BOOL)animated {
     [super viewIsAppearing:animated];
     
-    id crownInputSequencer = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(self.view, sel_registerName("puic_crownInputSequencer"));
-    id crownIndicatorContext = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(crownInputSequencer, sel_registerName("crownIndicatorContext"));
-    CGSize trackSize = reinterpret_cast<CGSize (*)(id, SEL)>(objc_msgSend)(crownIndicatorContext, sel_registerName("trackSize"));
-    NSLog(@"%@", crownIndicatorContext);
-    NSLog(@"%@", NSStringFromCGSize(trackSize));
+    id navigationItem = self.navigationItem;
     
-    reinterpret_cast<void (*)(id, SEL, CGSize)>(objc_msgSend)(crownIndicatorContext, sel_registerName("setTrackSize:"), CGSizeMake(40.f, 100.f));
-    reinterpret_cast<void (*)(id, SEL)>(objc_msgSend)(crownIndicatorContext, sel_registerName("_refreshPropertiesForWindow"));
+    id puic_searchController = [objc_lookUpClass("PUICSearchController") new];
+    reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(puic_searchController, sel_registerName("setSearchResultsUpdater:"), self);
+    reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(navigationItem, sel_registerName("puic_setSearchController:"), puic_searchController);
+    [puic_searchController release];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self.viewModel loadDataSourceWithCompletionHandler:nil];
 }
 
@@ -143,30 +170,11 @@ __attribute__((objc_direct_members))
 }
 
 - (id)collectionView:(id)collectionView trailingSwipeActionsConfigurationForItemAtIndexPath:(NSIndexPath *)indexPath {
-    __weak auto weakSelf = self;
-    
     id testAction = reinterpret_cast<id (*)(Class, SEL, NSInteger, id, id)>(objc_msgSend)(objc_lookUpClass("UIContextualAction"), sel_registerName("contextualActionWithStyle:title:handler:"), 0, nil, ^(id action, id sourceView, void (^completionHandler)(BOOL actionPerformed)){
-        NSInteger newValue;
-        if (weakSelf.puic_statusBarPlacement) {
-            newValue = 0;
-        } else {
-            newValue = 1;
-        }
-        
-        object_setInstanceVariable(weakSelf, "_nsw_puic_statusBarPlacement", (id)newValue);
-        [weakSelf nsw_setNeedsUpdateOfStatusBarPlacement];
         completionHandler(YES);
     });
     
     reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(testAction, sel_registerName("setImage:"), [UIImage systemImageNamed:@"eraser.line.dashed"]);
-    
-//    id action = reinterpret_cast<id (*)(Class, SEL, id, id, id, id)>(objc_msgSend)(objc_lookUpClass("UIAction"), sel_registerName("actionWithTitle:image:identifier:handler:"), @"Hello", [UIImage systemImageNamed:@"eraser.line.dashed"], nil, ^(id action) {
-//        
-//    });
-//    
-//    id menu = reinterpret_cast<id (*)(Class, SEL, id, id)>(objc_msgSend)(objc_lookUpClass("UIMenu"), sel_registerName("menuWithTitle:children:"), @"Test", @[action]);
-//    
-//    reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(testAction, sel_registerName("_setMenu:"), menu);
     
     UIColor *backgroundColor = reinterpret_cast<id (*)(Class, SEL)>(objc_msgSend)(UIColor.class, sel_registerName("arouetBlueColor"));
     reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(testAction, sel_registerName("setBackgroundColor:"), backgroundColor);
@@ -174,6 +182,36 @@ __attribute__((objc_direct_members))
     id swipeActions = reinterpret_cast<id (*)(Class, SEL, id)>(objc_msgSend)(objc_lookUpClass("UISwipeActionsConfiguration"), sel_registerName("configurationWithActions:"), @[testAction]);
     
     return swipeActions;
+}
+
+- (void)collectionView:(id)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%@", indexPath);
+    [self pushToThreadsViewController];
+}
+
+- (void)updateSearchResultsForSearchController:(id)searchController {
+    id searchField = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(searchController, sel_registerName("searchField"));
+    NSString *text = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(searchField, sel_registerName("text"));
+    NSLog(@"%@", text);
+}
+
+- (void)profileBarButtomItemDidTrigger:(id)sender {
+    id profilesViewController = [ProfilesViewController new];
+    id navigationController = reinterpret_cast<id (*)(id, SEL, id)>(objc_msgSend)([objc_lookUpClass("PUICNavigationController") alloc], sel_registerName("initWithRootViewController:"), profilesViewController);
+    [profilesViewController release];
+    [self presentViewController:navigationController animated:YES completion:nil];
+    [navigationController release];
+}
+
+- (void)bookmarkBarButtomItemDidTrigger:(id)sender {
+    
+}
+
+- (void)pushToThreadsViewController __attribute__((objc_direct)) {
+    ThreadsViewController *threadsViewController = [ThreadsViewController new];
+    id navigationController = self.navigationController;
+    reinterpret_cast<void (*)(id, SEL, id, BOOL)>(objc_msgSend)(navigationController, sel_registerName("pushViewController:animated:"), threadsViewController, YES);
+    [threadsViewController release];
 }
 
 @end

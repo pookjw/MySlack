@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import "NanoSlackWatch-Swift.h"
 
+__attribute__((objc_direct_members))
 @interface ChannelsCollectionViewCell ()
 @property (retain, readonly, nonatomic) id hostingController;
 @end
@@ -40,9 +41,6 @@
 
 + (void)registerMethodsIntoIsa:(Class)isa implIsa:(Class)implIsa {
     [super registerMethodsIntoIsa:isa implIsa:implIsa];
-    
-    IMP hostingController = class_getMethodImplementation(implIsa, @selector(hostingController));
-    class_addMethod(isa, @selector(hostingController), hostingController, NULL);
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -68,7 +66,7 @@
     [super dealloc];
 }
 
-- (id)hostingController {
+- (id)hostingController __attribute__((objc_direct)) {
     id hostingController;
     object_getInstanceVariable(self, "_hostingController", reinterpret_cast<void **>(&hostingController));
     

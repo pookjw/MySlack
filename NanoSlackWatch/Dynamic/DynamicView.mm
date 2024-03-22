@@ -19,43 +19,43 @@ OBJC_EXPORT id objc_msgSendSuper2(void);
 
 + (void)registerMethodsIntoIsa:(Class)isa implIsa:(Class)implIsa {
     IMP initWithFrame = class_getMethodImplementation(implIsa, @selector(initWithFrame:));
-    class_addMethod(isa, @selector(initWithFrame:), initWithFrame, NULL);
+    assert(class_addMethod(isa, @selector(initWithFrame:), initWithFrame, NULL));
     
     IMP backgroundColor = class_getMethodImplementation(implIsa, @selector(backgroundColor));
-    class_addMethod(isa, @selector(backgroundColor), backgroundColor, NULL);
+    assert(class_addMethod(isa, @selector(backgroundColor), backgroundColor, NULL));
     
     IMP setBackgroundColor = class_getMethodImplementation(implIsa, @selector(setBackgroundColor:));
-    class_addMethod(isa, @selector(setBackgroundColor:), setBackgroundColor, NULL);
+    assert(class_addMethod(isa, @selector(setBackgroundColor:), setBackgroundColor, NULL));
     
     IMP frame = class_getMethodImplementation(implIsa, @selector(frame));
-    class_addMethod(isa, @selector(frame), frame, NULL);
+    assert(class_addMethod(isa, @selector(frame), frame, NULL));
     
     IMP setFrame = class_getMethodImplementation(implIsa, @selector(setFrame:));
-    class_addMethod(isa, @selector(setFrame:), setFrame, NULL);
+    assert(class_addMethod(isa, @selector(setFrame:), setFrame, NULL));
     
     IMP bounds = class_getMethodImplementation(implIsa, @selector(bounds));
-    class_addMethod(isa, @selector(bounds), bounds, NULL);
+    assert(class_addMethod(isa, @selector(bounds), bounds, NULL));
     
     IMP setBounds = class_getMethodImplementation(implIsa, @selector(setBounds:));
-    class_addMethod(isa, @selector(setBounds:), setBounds, NULL);
+    assert(class_addMethod(isa, @selector(setBounds:), setBounds, NULL));
     
     IMP translatesAutoresizingMaskIntoConstraints = class_getMethodImplementation(implIsa, @selector(translatesAutoresizingMaskIntoConstraints));
-    class_addMethod(isa, @selector(translatesAutoresizingMaskIntoConstraints), translatesAutoresizingMaskIntoConstraints, NULL);
+    assert(class_addMethod(isa, @selector(translatesAutoresizingMaskIntoConstraints), translatesAutoresizingMaskIntoConstraints, NULL));
     
     IMP setTranslatesAutoresizingMaskIntoConstraints = class_getMethodImplementation(implIsa, @selector(setTranslatesAutoresizingMaskIntoConstraints:));
-    class_addMethod(isa, @selector(setTranslatesAutoresizingMaskIntoConstraints:), setTranslatesAutoresizingMaskIntoConstraints, NULL);
+    assert(class_addMethod(isa, @selector(setTranslatesAutoresizingMaskIntoConstraints:), setTranslatesAutoresizingMaskIntoConstraints, NULL));
     
     IMP autoresizingMask = class_getMethodImplementation(implIsa, @selector(autoresizingMask));
-    class_addMethod(isa, @selector(autoresizingMask), autoresizingMask, NULL);
+    assert(class_addMethod(isa, @selector(autoresizingMask), autoresizingMask, NULL));
     
     IMP setAutoresizingMask = class_getMethodImplementation(implIsa, @selector(setAutoresizingMask:));
-    class_addMethod(isa, @selector(setAutoresizingMask:), setAutoresizingMask, NULL);
+    assert(class_addMethod(isa, @selector(setAutoresizingMask:), setAutoresizingMask, NULL));
     
     IMP addSubview = class_getMethodImplementation(implIsa, @selector(addSubview:));
-    class_addMethod(isa, @selector(addSubview:), addSubview, NULL);
+    assert(class_addMethod(isa, @selector(addSubview:), addSubview, NULL));
     
     IMP _wheelChangedWithEvent = class_getMethodImplementation(implIsa, @selector(_wheelChangedWithEvent:));
-    class_addMethod(isa, @selector(_wheelChangedWithEvent:), _wheelChangedWithEvent, NULL);
+    assert(class_addMethod(isa, @selector(_wheelChangedWithEvent:), _wheelChangedWithEvent, NULL));
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {

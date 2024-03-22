@@ -33,7 +33,7 @@ public struct ChannelsCollectionViewCellView: View {
             return nil
         }
         
-        return channel["name"] as? String
+        return channel["name_normalized"] as? String
     }
     
     init(itemModel: ChannelsItemModel?) {

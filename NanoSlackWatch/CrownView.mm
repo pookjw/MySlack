@@ -45,25 +45,25 @@
     [super registerMethodsIntoIsa:isa implIsa:implIsa];
     
     IMP label = class_getMethodImplementation(implIsa, @selector(label));
-    class_addMethod(isa, @selector(label), label, NULL);
+    assert(class_addMethod(isa, @selector(label), label, NULL));
     
     IMP crownInputSequencer = class_getMethodImplementation(implIsa, @selector(crownInputSequencer));
-    class_addMethod(isa, @selector(crownInputSequencer), crownInputSequencer, NULL);
+    assert(class_addMethod(isa, @selector(crownInputSequencer), crownInputSequencer, NULL));
     
     IMP crownInputSequencer_shouldRubberBandAtBoundary = class_getMethodImplementation(implIsa, @selector(crownInputSequencer:shouldRubberBandAtBoundary:));
-    class_addMethod(isa, @selector(crownInputSequencer:shouldRubberBandAtBoundary:), crownInputSequencer_shouldRubberBandAtBoundary, NULL);
+    assert(class_addMethod(isa, @selector(crownInputSequencer:shouldRubberBandAtBoundary:), crownInputSequencer_shouldRubberBandAtBoundary, NULL));
     
     IMP crownInputSequencerOffsetDidChange = class_getMethodImplementation(implIsa, @selector(crownInputSequencerOffsetDidChange:));
-    class_addMethod(isa, @selector(crownInputSequencerOffsetDidChange:), crownInputSequencerOffsetDidChange, NULL);
+    assert(class_addMethod(isa, @selector(crownInputSequencerOffsetDidChange:), crownInputSequencerOffsetDidChange, NULL));
     
     IMP isFirstResponderForSequencer = class_getMethodImplementation(implIsa, @selector(isFirstResponderForSequencer:));
-    class_addMethod(isa, @selector(isFirstResponderForSequencer:), isFirstResponderForSequencer, NULL);
+    assert(class_addMethod(isa, @selector(isFirstResponderForSequencer:), isFirstResponderForSequencer, NULL));
     
     IMP proposedRestingOffsetForContentOffset = class_getMethodImplementation(implIsa, @selector(proposedRestingOffsetForContentOffset:));
-    class_addMethod(isa, @selector(proposedRestingOffsetForContentOffset:), proposedRestingOffsetForContentOffset, NULL);
+    assert(class_addMethod(isa, @selector(proposedRestingOffsetForContentOffset:), proposedRestingOffsetForContentOffset, NULL));
     
     IMP canBecomeFirstResponder = class_getMethodImplementation(implIsa, @selector(canBecomeFirstResponder));
-    class_addMethod(isa, @selector(canBecomeFirstResponder), canBecomeFirstResponder, NULL);
+    assert(class_addMethod(isa, @selector(canBecomeFirstResponder), canBecomeFirstResponder, NULL));
 }
 
 - (BOOL)canBecomeFirstResponder {

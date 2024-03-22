@@ -23,28 +23,40 @@ __attribute__((objc_direct_members))
 
 + (void)registerMethodsIntoIsa:(Class)isa implIsa:(Class)implIsa {
     IMP initWithNibName_bundle = class_getMethodImplementation(implIsa, @selector(initWithNibName:bundle:));
-    class_addMethod(isa, @selector(initWithNibName:bundle:), initWithNibName_bundle, NULL);
+    assert(class_addMethod(isa, @selector(initWithNibName:bundle:), initWithNibName_bundle, NULL));
     
     IMP puic_statusBarPlacement = class_getMethodImplementation(implIsa, @selector(puic_statusBarPlacement));
-    class_addMethod(isa, @selector(puic_statusBarPlacement), puic_statusBarPlacement, NULL);
+    assert(class_addMethod(isa, @selector(puic_statusBarPlacement), puic_statusBarPlacement, NULL));
     
     IMP setView = class_getMethodImplementation(implIsa, @selector(setView:));
-    class_addMethod(isa, @selector(setView:), setView, NULL);
+    assert(class_addMethod(isa, @selector(setView:), setView, NULL));
     
     IMP view = class_getMethodImplementation(implIsa, @selector(view));
-    class_addMethod(isa, @selector(view), view, NULL);
+    assert(class_addMethod(isa, @selector(view), view, NULL));
+    
+    IMP navigationItem = class_getMethodImplementation(implIsa, @selector(navigationItem));
+    assert(class_addMethod(isa, @selector(navigationItem), navigationItem, NULL));
+    
+    IMP navigationController = class_getMethodImplementation(implIsa, @selector(navigationController));
+    assert(class_addMethod(isa, @selector(navigationController), navigationController, NULL));
     
     IMP loadView = class_getMethodImplementation(implIsa, @selector(loadView));
-    class_addMethod(isa, @selector(loadView), loadView, NULL);
+    assert(class_addMethod(isa, @selector(loadView), loadView, NULL));
     
     IMP viewDidLoad = class_getMethodImplementation(implIsa, @selector(viewDidLoad));
-    class_addMethod(isa, @selector(viewDidLoad), viewDidLoad, NULL);
+    assert(class_addMethod(isa, @selector(viewDidLoad), viewDidLoad, NULL));
     
     IMP viewIsAppearing = class_getMethodImplementation(implIsa, @selector(viewIsAppearing:));
-    class_addMethod(isa, @selector(viewIsAppearing:), viewIsAppearing, NULL);
+    assert(class_addMethod(isa, @selector(viewIsAppearing:), viewIsAppearing, NULL));
     
-    IMP nsw_setNeedsUpdateOfStatusBarPlacement = class_getMethodImplementation(implIsa, @selector(nsw_setNeedsUpdateOfStatusBarPlacement));
-    class_addMethod(isa, @selector(nsw_setNeedsUpdateOfStatusBarPlacement), nsw_setNeedsUpdateOfStatusBarPlacement, NULL);
+    IMP presentViewController_animated_completion = class_getMethodImplementation(implIsa, @selector(presentViewController:animated:completion:));
+    assert(class_addMethod(isa, @selector(presentViewController:animated:completion:), presentViewController_animated_completion, NULL));
+    
+    IMP dismissViewControllerAnimated_completion = class_getMethodImplementation(implIsa, @selector(dismissViewControllerAnimated:completion:));
+    assert(class_addMethod(isa, @selector(dismissViewControllerAnimated:completion:), dismissViewControllerAnimated_completion, NULL));
+    
+    IMP presentationController = class_getMethodImplementation(implIsa, @selector(presentationController));
+    assert(class_addMethod(isa, @selector(presentationController), presentationController, NULL));
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -68,6 +80,21 @@ __attribute__((objc_direct_members))
     return reinterpret_cast<id (*)(objc_super *, SEL)>(objc_msgSendSuper2)(&superInfo, _cmd);
 }
 
+- (id)navigationItem {
+    objc_super superInfo = { self, [self class] };
+    return reinterpret_cast<id (*)(objc_super *, SEL)>(objc_msgSendSuper2)(&superInfo, _cmd);
+}
+
+- (id)presentationController {
+    objc_super superInfo = { self, [self class] };
+    return reinterpret_cast<id (*)(objc_super *, SEL)>(objc_msgSendSuper2)(&superInfo, _cmd);
+}
+
+- (id)navigationController {
+    objc_super superInfo = { self, [self class] };
+    return reinterpret_cast<id (*)(objc_super *, SEL)>(objc_msgSendSuper2)(&superInfo, _cmd);
+}
+
 - (void)loadView {
     objc_super superInfo = { self, [self class] };
     reinterpret_cast<void (*)(objc_super *, SEL)>(objc_msgSendSuper2)(&superInfo, _cmd);
@@ -81,6 +108,16 @@ __attribute__((objc_direct_members))
 - (void)viewIsAppearing:(BOOL)animated {
     objc_super superInfo = { self, [self class] };
     reinterpret_cast<void (*)(objc_super *, SEL, BOOL)>(objc_msgSendSuper2)(&superInfo, _cmd, animated);
+}
+
+- (void)presentViewController:(id)viewControllerToPresent animated:(BOOL)flag completion:(void (^)())completion {
+    objc_super superInfo = { self, [self class] };
+    reinterpret_cast<void (*)(objc_super *, SEL, id, BOOL, id)>(objc_msgSendSuper2)(&superInfo, _cmd, viewControllerToPresent, flag, completion);
+}
+
+- (void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^)())completion {
+    objc_super superInfo = { self, [self class] };
+    reinterpret_cast<void (*)(objc_super *, SEL, BOOL, id)>(objc_msgSendSuper2)(&superInfo, _cmd, flag, completion);
 }
 
 - (void)nsw_setNeedsUpdateOfStatusBarPlacement {
