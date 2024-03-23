@@ -18,8 +18,8 @@ public actor SlackAPIService {
         .shared
     }
     
-    @_expose(Cxx, "getConversationsDictionary")
-    public nonisolated func cxxInterop_getConversationsDictionary(completionHandler: UnsafeRawPointer) -> Progress {
+    @_expose(Cxx, "getConversationsListDictionary")
+    public nonisolated func cxxInterop_getConversationsListDictionary(completionHandler: UnsafeRawPointer) -> Progress {
         typealias CompletionHandlerType = @convention(block) @Sendable (NSDictionary?, Swift.Error?) -> Void
         
         let copiedCompletionHandler: AnyObject = unsafeBitCast(completionHandler, to: AnyObject.self).copy() as AnyObject
@@ -28,7 +28,34 @@ public actor SlackAPIService {
             let castedCompletionHandler: CompletionHandlerType = unsafeBitCast(copiedCompletionHandler, to: CompletionHandlerType.self)
             
             do {
-                let data: Data = try await _conversations()
+                let data: Data = try await _conversationsList()
+                let dictionary: NSDictionary = try JSONSerialization.jsonObject(with: data, options: [.json5Allowed]) as! NSDictionary
+                castedCompletionHandler(dictionary, nil)
+            } catch {
+                castedCompletionHandler(nil, error)
+            }
+        }
+        
+        let progress: Progress = .init(totalUnitCount: 1)
+        
+        progress.cancellationHandler = {
+            task.cancel()
+        }
+        
+        return progress
+    }
+    
+    @_expose(Cxx, "getConversationsHistoryDictionary")
+    public nonisolated func cxxInterop_getConversationsHistoryDictionary(channelID: String, completionHandler: UnsafeRawPointer) -> Progress {
+        typealias CompletionHandlerType = @convention(block) @Sendable (NSDictionary?, Swift.Error?) -> Void
+        
+        let copiedCompletionHandler: AnyObject = unsafeBitCast(completionHandler, to: AnyObject.self).copy() as AnyObject
+        
+        let task: Task<Void, Never> = .init { 
+            let castedCompletionHandler: CompletionHandlerType = unsafeBitCast(copiedCompletionHandler, to: CompletionHandlerType.self)
+            
+            do {
+                let data: Data = try await _conversationsHistory(channelID: channelID)
                 let dictionary: NSDictionary = try JSONSerialization.jsonObject(with: data, options: [.json5Allowed]) as! NSDictionary
                 castedCompletionHandler(dictionary, nil)
             } catch {

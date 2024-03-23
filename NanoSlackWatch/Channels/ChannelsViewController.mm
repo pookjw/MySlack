@@ -12,6 +12,7 @@
 #import "ChannelsCollectionViewCell.hpp"
 #import "ProfilesViewController.hpp"
 #import "ThreadsViewController.hpp"
+#import "UIColor+Private.h"
 
 __attribute__((objc_direct_members))
 @interface ChannelsViewController ()
@@ -36,6 +37,7 @@ __attribute__((objc_direct_members))
         Class _isa = objc_allocateClassPair([super dynamicIsa], "_ChannelsViewController", 0);
         
         class_addProtocol(_isa, NSProtocolFromString(@"PUICListCollectionViewLayoutDelegate"));
+        class_addProtocol(_isa, NSProtocolFromString(@"UICollectionViewDelegate"));
         
         class_addIvar(_isa, "_viewModel", sizeof(id), sizeof(id), @encode(id));
         class_addIvar(_isa, "_cellRegistration", sizeof(id), sizeof(id), @encode(id));
@@ -74,6 +76,7 @@ __attribute__((objc_direct_members))
         reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(navigationItem, sel_registerName("setTitle:"), @"Slack");
         
         id profileBarButtonItem = reinterpret_cast<id (*)(id, SEL, id, NSInteger, id, SEL)>(objc_msgSend)([objc_lookUpClass("UIBarButtonItem") alloc], sel_registerName("initWithImage:style:target:action:"), [UIImage systemImageNamed:@"person.crop.circle"], 0, self, @selector(profileBarButtomItemDidTrigger:));
+        reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(profileBarButtonItem, sel_registerName("setTintColor:"), UIColor.systemCyanColor);
         reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(navigationItem, sel_registerName("setLeftBarButtonItems:"), @[profileBarButtonItem]);
         [profileBarButtonItem release];
         
@@ -103,7 +106,6 @@ __attribute__((objc_direct_members))
     reinterpret_cast<void (*)(id, SEL, BOOL)>(objc_msgSend)(collectionViewLayout, sel_registerName("setCurvesTop:"), YES);
     reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(collectionViewLayout, sel_registerName("setDelegate:"), self);
     
-    // PUICCrownIndicatorContext 커스텀
     id collectionView = reinterpret_cast<id (*)(id, SEL, CGRect, id)>(objc_msgSend)([objc_lookUpClass("PUICListCollectionView") alloc], sel_registerName("initWithFrame:collectionViewLayout:"), CGRectNull, collectionViewLayout);
     reinterpret_cast<void (*)(id, SEL, id)>(objc_msgSend)(collectionView, sel_registerName("setDelegate:"), self);
     
@@ -128,7 +130,9 @@ __attribute__((objc_direct_members))
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.viewModel loadDataSourceWithCompletionHandler:nil];
+    [self.viewModel loadDataSourceWithCompletionHandler:^(NSError * _Nullable error) {
+        assert(!error);
+    }];
 }
 
 - (ChannelsViewModel *)viewModel __attribute__((objc_direct)) {
@@ -185,8 +189,17 @@ __attribute__((objc_direct_members))
 }
 
 - (void)collectionView:(id)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%@", indexPath);
-    [self pushToThreadsViewController];
+    [self.viewModel itemModelAtIndexPath:indexPath completionHandler:^(ChannelsItemModel * _Nullable itemModel) {
+        if (itemModel == nil) return;
+        
+        NSDictionary<NSString *, id> *channel = itemModel.userInfo[ChannelsItemModelChannelKey];
+        NSString *channelID = channel[@"id"];
+        NSString *channelName = channel[@"name_normalized"];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self pushToThreadsViewControllerWithChannelID:channelID channelName:channelName];
+        });
+    }];
 }
 
 - (void)updateSearchResultsForSearchController:(id)searchController {
@@ -207,8 +220,8 @@ __attribute__((objc_direct_members))
     
 }
 
-- (void)pushToThreadsViewController __attribute__((objc_direct)) {
-    ThreadsViewController *threadsViewController = [ThreadsViewController new];
+- (void)pushToThreadsViewControllerWithChannelID:(NSString *)channelID channelName:(NSString *)channelName __attribute__((objc_direct)) {
+    ThreadsViewController *threadsViewController = [[ThreadsViewController alloc] initWithChannelID:channelID channelName:channelName];
     id navigationController = self.navigationController;
     reinterpret_cast<void (*)(id, SEL, id, BOOL)>(objc_msgSend)(navigationController, sel_registerName("pushViewController:animated:"), threadsViewController, YES);
     [threadsViewController release];

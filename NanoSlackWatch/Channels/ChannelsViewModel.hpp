@@ -16,7 +16,8 @@ __attribute__((objc_direct_members))
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithDataSource:(id)dataSource;
-- (void)loadDataSourceWithCompletionHandler:(void (^ _Nullable)())completionaHandler;
+- (void)loadDataSourceWithCompletionHandler:(void (^ _Nullable)(NSError * _Nullable error))completionaHandler;
+- (void)itemModelAtIndexPath:(NSIndexPath *)indexPath completionHandler:(void (^ _Nullable)(ChannelsItemModel * _Nullable itemModel))completionHandler;
 @end
 
 NS_ASSUME_NONNULL_END

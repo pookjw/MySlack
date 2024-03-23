@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic) id navigationItem;
 @property (readonly, nonatomic) id _Nullable presentationController;
 @property (retain, readonly, nonatomic) id _Nullable navigationController;
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
+- (instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil;
 + (void)registerMethodsIntoIsa:(Class)isa implIsa:(Class)implIsa;
 - (void)loadView;
 - (void)viewDidLoad;

@@ -1,5 +1,5 @@
 //
-//  SlackAPIService+Conversations.swift
+//  SlackAPIService+ConversationsList.swift
 //  
 //
 //  Created by Jinwoo Kim on 3/19/24.
@@ -8,12 +8,12 @@
 import Foundation
 
 extension SlackAPIService {
-    public func conversations() async throws -> ConversationsResponse {
-        let data: Data = try await _conversations()
+    public func conversationsList() async throws -> ConversationsListResponse {
+        let data: Data = try await _conversationsList()
         return try decode(data: data)
     }
     
-    func _conversations() async throws -> Data {
+    func _conversationsList() async throws -> Data {
         try await request(
             path: "/api/conversations.list",
             queryItems: [
@@ -25,14 +25,14 @@ extension SlackAPIService {
 }
 
 extension SlackAPIService {
-    public struct ConversationsResponse: Decodable {
+    public struct ConversationsListResponse: Decodable {
         public let ok: Bool
         public let channels: [Channel]
         public let responseMetadata: ResponseMetadata
     }
 }
 
-extension SlackAPIService.ConversationsResponse {
+extension SlackAPIService.ConversationsListResponse {
     public struct Channel: Decodable {
         public let id: String
         public let name: String?
@@ -64,7 +64,7 @@ extension SlackAPIService.ConversationsResponse {
     }
 }
 
-extension SlackAPIService.ConversationsResponse.Channel {
+extension SlackAPIService.ConversationsListResponse.Channel {
     public struct Topic: Decodable {
         public let value: String
         public let creator: String
@@ -72,7 +72,7 @@ extension SlackAPIService.ConversationsResponse.Channel {
     }
 }
 
-extension SlackAPIService.ConversationsResponse.Channel {
+extension SlackAPIService.ConversationsListResponse.Channel {
     public struct Purpose: Decodable {
         public let value: String
         public let creator: String
@@ -80,7 +80,7 @@ extension SlackAPIService.ConversationsResponse.Channel {
     }
 }
 
-extension SlackAPIService.ConversationsResponse {
+extension SlackAPIService.ConversationsListResponse {
     public struct ResponseMetadata: Decodable {
         public let nextCursor: String
     }

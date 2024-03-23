@@ -15,6 +15,8 @@
 		4F012BD92BA2BE9A0060CA7D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F012BD82BA2BE9A0060CA7D /* main.mm */; };
 		4F012BDF2BA2C29F0060CA7D /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F012BDD2BA2C29F0060CA7D /* AppDelegate.mm */; };
 		4F012C5F2BA368C30060CA7D /* SceneDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F012C5E2BA368C30060CA7D /* SceneDelegate.mm */; };
+		4F0E876C2BAF444200959497 /* ThreadsViewModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F0E876B2BAF444200959497 /* ThreadsViewModel.mm */; };
+		4F0E87722BAF450B00959497 /* ThreadsItemModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F0E87712BAF450B00959497 /* ThreadsItemModel.mm */; };
 		4F55D8882BA2BD44009A573B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F55D8872BA2BD44009A573B /* AppDelegate.m */; };
 		4F55D88B2BA2BD44009A573B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F55D88A2BA2BD44009A573B /* SceneDelegate.m */; };
 		4F55D88E2BA2BD44009A573B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F55D88D2BA2BD44009A573B /* ViewController.m */; };
@@ -75,6 +77,11 @@
 		4F012BE32BA2C8D80060CA7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4F012C5D2BA368C30060CA7D /* SceneDelegate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SceneDelegate.hpp; sourceTree = "<group>"; };
 		4F012C5E2BA368C30060CA7D /* SceneDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SceneDelegate.mm; sourceTree = "<group>"; };
+		4F0E874F2BAF3DB500959497 /* UIColor+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Private.h"; sourceTree = "<group>"; };
+		4F0E876A2BAF444200959497 /* ThreadsViewModel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ThreadsViewModel.hpp; sourceTree = "<group>"; };
+		4F0E876B2BAF444200959497 /* ThreadsViewModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ThreadsViewModel.mm; sourceTree = "<group>"; };
+		4F0E87702BAF450B00959497 /* ThreadsItemModel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ThreadsItemModel.hpp; sourceTree = "<group>"; };
+		4F0E87712BAF450B00959497 /* ThreadsItemModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ThreadsItemModel.mm; sourceTree = "<group>"; };
 		4F55D8832BA2BD44009A573B /* NanoSlack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NanoSlack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F55D8862BA2BD44009A573B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F55D8872BA2BD44009A573B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -139,6 +146,7 @@
 				4F012BD82BA2BE9A0060CA7D /* main.mm */,
 				4F69EA8E2BA8590F00B43E58 /* CrownView.hpp */,
 				4F69EA8F2BA8590F00B43E58 /* CrownView.mm */,
+				4F0E874F2BAF3DB500959497 /* UIColor+Private.h */,
 				4FB1FEDD2BA74A5500D07317 /* Dynamic */,
 				4FB1FECA2BA736CC00D07317 /* Channels */,
 				4F7C43242BAC9BD000B78CF3 /* Threads */,
@@ -200,6 +208,10 @@
 			children = (
 				4F7C43252BAC9BE200B78CF3 /* ThreadsViewController.hpp */,
 				4F7C43262BAC9BE200B78CF3 /* ThreadsViewController.mm */,
+				4F0E876A2BAF444200959497 /* ThreadsViewModel.hpp */,
+				4F0E876B2BAF444200959497 /* ThreadsViewModel.mm */,
+				4F0E87702BAF450B00959497 /* ThreadsItemModel.hpp */,
+				4F0E87712BAF450B00959497 /* ThreadsItemModel.mm */,
 			);
 			path = Threads;
 			sourceTree = "<group>";
@@ -369,7 +381,9 @@
 				4F0090A82BA9CA2400AF898E /* ChannelsItemModel.mm in Sources */,
 				4F7C43272BAC9BE200B78CF3 /* ThreadsViewController.mm in Sources */,
 				4FB1FECD2BA736D700D07317 /* ChannelsViewModel.mm in Sources */,
+				4F0E87722BAF450B00959497 /* ThreadsItemModel.mm in Sources */,
 				4F012BDF2BA2C29F0060CA7D /* AppDelegate.mm in Sources */,
+				4F0E876C2BAF444200959497 /* ThreadsViewModel.mm in Sources */,
 				4F0090A52BA9C87D00AF898E /* ChannelsSectionModel.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

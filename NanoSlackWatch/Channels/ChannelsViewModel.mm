@@ -35,14 +35,18 @@ __attribute__((objc_direct_members))
     [super dealloc];
 }
 
-- (void)loadDataSourceWithCompletionHandler:(void (^)())completionaHandler {
+- (void)loadDataSourceWithCompletionHandler:(void (^)(NSError * _Nullable error))completionaHandler {
+    auto queue = self.queue;
     id dataSource = self.dataSource;
     
-    dispatch_async(self.queue, ^{
-        SlackCore::SlackAPIService::getSharedInstance().getConversationsDictionary(^(NSDictionary * _Nullable dictionary, NSError * _Nullable error) {
-            assert(!error);
+    dispatch_async(queue, ^{
+        SlackCore::SlackAPIService::getSharedInstance().getConversationsListDictionary(^(NSDictionary * _Nullable dictionary, NSError * _Nullable error) {
+            if (error) {
+                completionaHandler(error);
+                return;
+            }
             
-            dispatch_async(self.queue, ^{
+            dispatch_async(queue, ^{
                 id snapshot = [objc_lookUpClass("NSDiffableDataSourceSnapshot") new];
                 
                 auto channels = [NSMutableArray<ChannelsItemModel *> array];
@@ -152,10 +156,21 @@ __attribute__((objc_direct_members))
                 
                 //
                 
-                reinterpret_cast<void (*)(id, SEL, id, BOOL, id)>(objc_msgSend)(dataSource, sel_registerName("applySnapshot:animatingDifferences:completion:"), snapshot, YES, completionaHandler);
+                reinterpret_cast<void (*)(id, SEL, id, BOOL, id)>(objc_msgSend)(dataSource, sel_registerName("applySnapshot:animatingDifferences:completion:"), snapshot, YES, ^{
+                    completionaHandler(nil);
+                });
                 [snapshot release];
             });
         });
+    });
+}
+
+- (void)itemModelAtIndexPath:(NSIndexPath *)indexPath completionHandler:(void (^)(ChannelsItemModel * _Nullable))completionHandler {
+    id dataSource = self.dataSource;
+    
+    dispatch_async(self.queue, ^{
+        ChannelsItemModel * _Nullable itemModel = reinterpret_cast<id (*)(id, SEL, id)>(objc_msgSend)(dataSource, sel_registerName("itemIdentifierForIndexPath:"), indexPath);
+        completionHandler(itemModel);
     });
 }
 
