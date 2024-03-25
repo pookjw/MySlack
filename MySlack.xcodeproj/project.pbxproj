@@ -29,6 +29,9 @@
 		4F69EA902BA8590F00B43E58 /* CrownView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F69EA8F2BA8590F00B43E58 /* CrownView.mm */; };
 		4F7C43232BAC972900B78CF3 /* ProfilesViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C43222BAC972900B78CF3 /* ProfilesViewController.mm */; };
 		4F7C43272BAC9BE200B78CF3 /* ThreadsViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C43262BAC9BE200B78CF3 /* ThreadsViewController.mm */; };
+		4F8E6B7A2BB139B400932BB3 /* ThreadsCollectionViewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E6B792BB139B400932BB3 /* ThreadsCollectionViewCellView.swift */; };
+		4F8E6B7D2BB13ABA00932BB3 /* ThreadsCollectionViewCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E6B7C2BB13ABA00932BB3 /* ThreadsCollectionViewCell.mm */; };
+		4F8E6BF62BB1DECF00932BB3 /* RepliesViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E6BF52BB1DECF00932BB3 /* RepliesViewController.mm */; };
 		4FB1FEC02BA6FC8200D07317 /* ChannelsViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1FEBF2BA6FC8200D07317 /* ChannelsViewController.mm */; };
 		4FB1FEC62BA704D000D07317 /* DynamicViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1FEC52BA704D000D07317 /* DynamicViewController.mm */; };
 		4FB1FEC92BA70B0C00D07317 /* NSObject+Foundation_IvarDescription.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1FEC82BA70B0C00D07317 /* NSObject+Foundation_IvarDescription.mm */; };
@@ -101,6 +104,11 @@
 		4F7C43222BAC972900B78CF3 /* ProfilesViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ProfilesViewController.mm; sourceTree = "<group>"; };
 		4F7C43252BAC9BE200B78CF3 /* ThreadsViewController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ThreadsViewController.hpp; sourceTree = "<group>"; };
 		4F7C43262BAC9BE200B78CF3 /* ThreadsViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ThreadsViewController.mm; sourceTree = "<group>"; };
+		4F8E6B792BB139B400932BB3 /* ThreadsCollectionViewCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsCollectionViewCellView.swift; sourceTree = "<group>"; };
+		4F8E6B7B2BB13ABA00932BB3 /* ThreadsCollectionViewCell.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ThreadsCollectionViewCell.hpp; sourceTree = "<group>"; };
+		4F8E6B7C2BB13ABA00932BB3 /* ThreadsCollectionViewCell.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ThreadsCollectionViewCell.mm; sourceTree = "<group>"; };
+		4F8E6BF42BB1DECF00932BB3 /* RepliesViewController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RepliesViewController.hpp; sourceTree = "<group>"; };
+		4F8E6BF52BB1DECF00932BB3 /* RepliesViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RepliesViewController.mm; sourceTree = "<group>"; };
 		4FB1FEBE2BA6FC8200D07317 /* ChannelsViewController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ChannelsViewController.hpp; sourceTree = "<group>"; };
 		4FB1FEBF2BA6FC8200D07317 /* ChannelsViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ChannelsViewController.mm; sourceTree = "<group>"; };
 		4FB1FEC42BA704D000D07317 /* DynamicViewController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DynamicViewController.hpp; sourceTree = "<group>"; };
@@ -150,6 +158,7 @@
 				4FB1FEDD2BA74A5500D07317 /* Dynamic */,
 				4FB1FECA2BA736CC00D07317 /* Channels */,
 				4F7C43242BAC9BD000B78CF3 /* Threads */,
+				4F8E6BF02BB1DEA800932BB3 /* Replies */,
 				4F7C43202BAC96FF00B78CF3 /* Profiles */,
 				4FB1FEC72BA70B0C00D07317 /* NSObject+Foundation_IvarDescription.h */,
 				4FB1FEC82BA70B0C00D07317 /* NSObject+Foundation_IvarDescription.mm */,
@@ -212,8 +221,20 @@
 				4F0E876B2BAF444200959497 /* ThreadsViewModel.mm */,
 				4F0E87702BAF450B00959497 /* ThreadsItemModel.hpp */,
 				4F0E87712BAF450B00959497 /* ThreadsItemModel.mm */,
+				4F8E6B7B2BB13ABA00932BB3 /* ThreadsCollectionViewCell.hpp */,
+				4F8E6B7C2BB13ABA00932BB3 /* ThreadsCollectionViewCell.mm */,
+				4F8E6B792BB139B400932BB3 /* ThreadsCollectionViewCellView.swift */,
 			);
 			path = Threads;
+			sourceTree = "<group>";
+		};
+		4F8E6BF02BB1DEA800932BB3 /* Replies */ = {
+			isa = PBXGroup;
+			children = (
+				4F8E6BF42BB1DECF00932BB3 /* RepliesViewController.hpp */,
+				4F8E6BF52BB1DECF00932BB3 /* RepliesViewController.mm */,
+			);
+			path = Replies;
 			sourceTree = "<group>";
 		};
 		4FB1FECA2BA736CC00D07317 /* Channels */ = {
@@ -367,17 +388,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F8E6B7D2BB13ABA00932BB3 /* ThreadsCollectionViewCell.mm in Sources */,
 				4FB1FEE02BA74A6300D07317 /* DynamicView.mm in Sources */,
 				4FB1FEC62BA704D000D07317 /* DynamicViewController.mm in Sources */,
 				4FB1FEF62BA7603A00D07317 /* DynamicListPlatterCell.mm in Sources */,
 				4F7C43232BAC972900B78CF3 /* ProfilesViewController.mm in Sources */,
 				4F012BD92BA2BE9A0060CA7D /* main.mm in Sources */,
 				4F69EA902BA8590F00B43E58 /* CrownView.mm in Sources */,
+				4F8E6B7A2BB139B400932BB3 /* ThreadsCollectionViewCellView.swift in Sources */,
 				4FB1FEC02BA6FC8200D07317 /* ChannelsViewController.mm in Sources */,
 				4FB1FEC92BA70B0C00D07317 /* NSObject+Foundation_IvarDescription.mm in Sources */,
 				4F0090AD2BA9FB7400AF898E /* ChannelsCollectionViewCellView.swift in Sources */,
 				4F001EF62BA80CAA008C0CCC /* ChannelsCollectionViewCell.mm in Sources */,
 				4F012C5F2BA368C30060CA7D /* SceneDelegate.mm in Sources */,
+				4F8E6BF62BB1DECF00932BB3 /* RepliesViewController.mm in Sources */,
 				4F0090A82BA9CA2400AF898E /* ChannelsItemModel.mm in Sources */,
 				4F7C43272BAC9BE200B78CF3 /* ThreadsViewController.mm in Sources */,
 				4FB1FECD2BA736D700D07317 /* ChannelsViewModel.mm in Sources */,

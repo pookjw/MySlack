@@ -9,13 +9,14 @@
 #import <objc/message.h>
 #import <objc/runtime.h>
 #import "ThreadsViewModel.hpp"
+#import "ThreadsCollectionViewCell.hpp"
+#import "RepliesViewController.hpp"
 
 __attribute__((objc_direct_members))
 @interface ThreadsViewController ()
 @property (retain, readonly, nonatomic) ThreadsViewModel *viewModel;
 @property (copy, readonly, nonatomic) NSString *channelID;
 @property (retain, readonly, nonatomic) id cellRegistration;
-
 @end
 
 @implementation ThreadsViewController
@@ -34,6 +35,8 @@ __attribute__((objc_direct_members))
     if (isa == nil) {
         Class _isa = objc_allocateClassPair([super dynamicIsa], "_ThreadsViewController", 0);
         
+        class_addProtocol(_isa, NSProtocolFromString(@"UICollectionViewDelegate"));
+        
         class_addIvar(_isa, "_channelID", sizeof(id), sizeof(id), @encode(id));
         class_addIvar(_isa, "_viewModel", sizeof(id), sizeof(id), @encode(id));
         class_addIvar(_isa, "_cellRegistration", sizeof(id), sizeof(id), @encode(id));
@@ -47,8 +50,8 @@ __attribute__((objc_direct_members))
 + (void)registerMethodsIntoIsa:(Class)isa implIsa:(Class)implIsa {
     [super registerMethodsIntoIsa:isa implIsa:implIsa];
     
-    IMP initWithChannelID_channelName = class_getMethodImplementation(implIsa, @selector(initWithChannelID:channelName:));
-    assert(class_addMethod(isa, @selector(initWithChannelID:channelName:), initWithChannelID_channelName, NULL));
+    IMP collectionView_didSelectItemAtIndexPath = class_getMethodImplementation(implIsa, @selector(collectionView:didSelectItemAtIndexPath:));
+    assert(class_addMethod(isa, @selector(collectionView:didSelectItemAtIndexPath:), collectionView_didSelectItemAtIndexPath, NULL));
 }
 
 - (instancetype)initWithChannelID:(NSString *)channelID channelName:(NSString *)channelName {
@@ -126,8 +129,8 @@ __attribute__((objc_direct_members))
     
     if (cellRegistration) return cellRegistration;
     
-    cellRegistration = reinterpret_cast<id (*)(Class, SEL, Class, id)>(objc_msgSend)(objc_lookUpClass("UICollectionViewCellRegistration"), sel_registerName("registrationWithCellClass:configurationHandler:"), objc_lookUpClass("PUICListPlatterCell"), ^(id cell, NSIndexPath *indexPath, ThreadsItemModel *item) {
-        
+    cellRegistration = reinterpret_cast<id (*)(Class, SEL, Class, id)>(objc_msgSend)(objc_lookUpClass("UICollectionViewCellRegistration"), sel_registerName("registrationWithCellClass:configurationHandler:"), ThreadsCollectionViewCell.dynamicIsa, ^(ThreadsCollectionViewCell *cell, NSIndexPath *indexPath, ThreadsItemModel *item) {
+        [cell updateItemModel:item];
     });
     
     object_setInstanceVariable(self, "_cellRegistration", [cellRegistration retain]);
@@ -144,6 +147,25 @@ __attribute__((objc_direct_members))
     });
     
     return [dataSource autorelease];
+}
+
+- (void)pushToRepliesViewControllerWithChannelID:(NSString *)channelID threadID:(NSString *)threadID __attribute__((objc_direct)) {
+    RepliesViewController *repliesViewController = [[RepliesViewController alloc] initWithChannelID:channelID threadID:threadID];
+    id navigationController = self.navigationController;
+    reinterpret_cast<void (*)(id, SEL, id, BOOL)>(objc_msgSend)(navigationController, sel_registerName("pushViewController:animated:"), repliesViewController, YES);
+    [repliesViewController release];
+}
+
+- (void)collectionView:(id)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self.viewModel itemModelAtIndexPath:indexPath completionHandler:^(ThreadsItemModel * _Nullable itemModel) {
+        NSDictionary *message = itemModel.userInfo[ThreadsItemModelMessageKey];
+        NSString *threadID = message[@"ts"];
+        assert(threadID);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self pushToRepliesViewControllerWithChannelID:self.channelID threadID:threadID];
+        });
+    }];
 }
 
 @end

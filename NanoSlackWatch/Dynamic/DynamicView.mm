@@ -21,6 +21,9 @@ OBJC_EXPORT id objc_msgSendSuper2(void);
     IMP initWithFrame = class_getMethodImplementation(implIsa, @selector(initWithFrame:));
     assert(class_addMethod(isa, @selector(initWithFrame:), initWithFrame, NULL));
     
+    IMP dealloc = class_getMethodImplementation(implIsa, @selector(dealloc));
+    assert(class_addMethod(isa, @selector(dealloc), dealloc, NULL));
+    
     IMP backgroundColor = class_getMethodImplementation(implIsa, @selector(backgroundColor));
     assert(class_addMethod(isa, @selector(backgroundColor), backgroundColor, NULL));
     
@@ -63,6 +66,14 @@ OBJC_EXPORT id objc_msgSendSuper2(void);
     self = reinterpret_cast<id (*)(objc_super *, SEL, CGRect)>(objc_msgSendSuper2)(&superInfo, _cmd, frame);
     return self;
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-missing-super-calls"
+- (void)dealloc {
+    objc_super superInfo = { self, [self class] };
+    reinterpret_cast<void (*)(objc_super *, SEL)>(objc_msgSendSuper2)(&superInfo, _cmd);
+}
+#pragma clang diagnostic pop
 
 - (UIColor *)backgroundColor {
     objc_super superInfo = { self, [self class] };

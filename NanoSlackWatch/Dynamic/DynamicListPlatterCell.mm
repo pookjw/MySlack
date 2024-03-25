@@ -37,6 +37,9 @@ OBJC_EXPORT id objc_msgSendSuper2(void);
     
     IMP setHighlighted = class_getMethodImplementation(implIsa, @selector(setHighlighted:));
     assert(class_addMethod(isa, @selector(setHighlighted:), setHighlighted, NULL));
+    
+    IMP preferredLayoutAttributesFittingAttributes = class_getMethodImplementation(implIsa, @selector(preferredLayoutAttributesFittingAttributes:));
+    assert(class_addMethod(isa, @selector(preferredLayoutAttributesFittingAttributes:), preferredLayoutAttributesFittingAttributes, NULL));
 }
 
 - (void)prepareForReuse {
@@ -62,6 +65,11 @@ OBJC_EXPORT id objc_msgSendSuper2(void);
 - (void)setHighlighted:(BOOL)highlighted {
     objc_super superInfo = { self, [self class] };
     reinterpret_cast<void (*)(objc_super *, SEL, BOOL)>(objc_msgSendSuper2)(&superInfo, _cmd, highlighted);
+}
+
+- (id)preferredLayoutAttributesFittingAttributes:(id)layoutAttributes {
+    objc_super superInfo = { self, [self class] };
+    return reinterpret_cast<id (*)(objc_super *, SEL, id)>(objc_msgSendSuper2)(&superInfo, _cmd, layoutAttributes);
 }
 
 @end

@@ -3,3 +3,4 @@
 //
 
 #import "ChannelsItemModel.hpp"
+#import "ThreadsItemModel.hpp"

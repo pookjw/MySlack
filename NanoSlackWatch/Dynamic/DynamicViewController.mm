@@ -25,6 +25,9 @@ __attribute__((objc_direct_members))
     IMP initWithNibName_bundle = class_getMethodImplementation(implIsa, @selector(initWithNibName:bundle:));
     assert(class_addMethod(isa, @selector(initWithNibName:bundle:), initWithNibName_bundle, NULL));
     
+    IMP dealloc = class_getMethodImplementation(implIsa, @selector(dealloc));
+    assert(class_addMethod(isa, @selector(dealloc), dealloc, NULL));
+    
     IMP puic_statusBarPlacement = class_getMethodImplementation(implIsa, @selector(puic_statusBarPlacement));
     assert(class_addMethod(isa, @selector(puic_statusBarPlacement), puic_statusBarPlacement, NULL));
     
@@ -64,6 +67,14 @@ __attribute__((objc_direct_members))
     self = reinterpret_cast<id (*)(objc_super *, SEL, id, id)>(objc_msgSendSuper2)(&superInfo, _cmd, nibNameOrNil, nibBundleOrNil);
     return self;
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-missing-super-calls"
+- (void)dealloc {
+    objc_super superInfo = { self, [self class] };
+    reinterpret_cast<void (*)(objc_super *, SEL)>(objc_msgSendSuper2)(&superInfo, _cmd);
+}
+#pragma clang diagnostic pop
 
 - (NSInteger)puic_statusBarPlacement {
     objc_super superInfo = { self, [self class] };

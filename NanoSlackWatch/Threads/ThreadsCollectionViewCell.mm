@@ -1,35 +1,35 @@
 //
-//  ChannelsCollectionViewCell.mm
+//  ThreadsCollectionViewCell.mm
 //  NanoSlackWatch
 //
-//  Created by Jinwoo Kim on 3/18/24.
+//  Created by Jinwoo Kim on 3/25/24.
 //
 
-#import "ChannelsCollectionViewCell.hpp"
+#import "ThreadsCollectionViewCell.hpp"
 #import <objc/message.h>
 #import <objc/runtime.h>
 #import "NanoSlackWatch-Swift.h"
 
 __attribute__((objc_direct_members))
-@interface ChannelsCollectionViewCell ()
+@interface ThreadsCollectionViewCell ()
 @property (retain, readonly, nonatomic) id hostingController;
 @end
 
-@implementation ChannelsCollectionViewCell
+@implementation ThreadsCollectionViewCell
 
 + (void)load {
     [self registerMethodsIntoIsa:[self dynamicIsa] implIsa:self];
 }
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
-    return [[ChannelsCollectionViewCell dynamicIsa] allocWithZone:zone];
+    return [[ThreadsCollectionViewCell dynamicIsa] allocWithZone:zone];
 }
 
 + (Class)dynamicIsa {
     static Class isa;
     
     if (isa == nil) {
-        Class _isa = objc_allocateClassPair([super dynamicIsa], "_ChannelsCollectionViewCell", 0);
+        Class _isa = objc_allocateClassPair([super dynamicIsa], "_ThreadsCollectionViewCell", 0);
         
         class_addIvar(_isa, "_hostingController", sizeof(id), sizeof(id), @encode(id));
         
@@ -37,10 +37,6 @@ __attribute__((objc_direct_members))
     }
     
     return isa;
-}
-
-+ (void)registerMethodsIntoIsa:(Class)isa implIsa:(Class)implIsa {
-    [super registerMethodsIntoIsa:isa implIsa:implIsa];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -56,7 +52,7 @@ __attribute__((objc_direct_members))
 
 - (void)prepareForReuse {
     [super prepareForReuse];
-    NanoSlackWatch::ChannelsCollectionViewCellView::updateHostingController(self.hostingController, nil);
+    NanoSlackWatch::ThreadsCollectionViewCellView::updateHostingController(self.hostingController, nil);
 }
 
 - (void)dealloc {
@@ -67,21 +63,38 @@ __attribute__((objc_direct_members))
     [super dealloc];
 }
 
+- (id)preferredLayoutAttributesFittingAttributes:(id)layoutAttributes {
+    id result = [layoutAttributes copy]; // PUICListCollectionViewLayoutAttributes *
+    
+    CGSize oldSize = reinterpret_cast<CGSize (*)(id, SEL)>(objc_msgSend)(result, sel_registerName("size"));
+    
+    id hostingController = self.hostingController;
+    id hostingView = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(hostingController, sel_registerName("view"));
+    
+    CGSize newSize = reinterpret_cast<CGSize (*)(id, SEL, CGSize, float, float)>(objc_msgSend)(hostingView, sel_registerName("systemLayoutSizeFittingSize:withHorizontalFittingPriority:verticalFittingPriority:"), CGSizeMake(oldSize.width, CGFLOAT_MAX), 1000.f, 50.f);
+    
+    reinterpret_cast<void (*)(id, SEL, CGSize)>(objc_msgSend)(result, sel_registerName("setSize:"), newSize);
+    
+    NSLog(@"%@ %@", NSStringFromCGSize(oldSize), NSStringFromCGSize(newSize));
+    
+    return [result autorelease];
+}
+
 - (id)hostingController __attribute__((objc_direct)) {
     id hostingController;
     object_getInstanceVariable(self, "_hostingController", reinterpret_cast<void **>(&hostingController));
     
     if (hostingController) return hostingController;
     
-    hostingController = NanoSlackWatch::ChannelsCollectionViewCellView::makeHostingController();
+    hostingController = NanoSlackWatch::ThreadsCollectionViewCellView::makeHostingController();
     
     object_setInstanceVariable(self, "_hostingController", [hostingController retain]);
     
     return hostingController;
 }
 
-- (void)updateItemModel:(ChannelsItemModel *)itemModel {
-    NanoSlackWatch::ChannelsCollectionViewCellView::updateHostingController(self.hostingController, itemModel);
+- (void)updateItemModel:(ThreadsItemModel *)itemModel {
+    NanoSlackWatch::ThreadsCollectionViewCellView::updateHostingController(self.hostingController, itemModel);
 }
 
 @end

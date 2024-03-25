@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, getter=isSelected) BOOL selected;
 @property(nonatomic, getter=isHighlighted) BOOL highlighted;
 - (void)prepareForReuse;
+- (id)preferredLayoutAttributesFittingAttributes:(id)layoutAttributes;
 @end
 
 NS_ASSUME_NONNULL_END
