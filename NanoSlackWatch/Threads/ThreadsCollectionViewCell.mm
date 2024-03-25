@@ -75,8 +75,6 @@ __attribute__((objc_direct_members))
     
     reinterpret_cast<void (*)(id, SEL, CGSize)>(objc_msgSend)(result, sel_registerName("setSize:"), newSize);
     
-    NSLog(@"%@ %@", NSStringFromCGSize(oldSize), NSStringFromCGSize(newSize));
-    
     return [result autorelease];
 }
 
