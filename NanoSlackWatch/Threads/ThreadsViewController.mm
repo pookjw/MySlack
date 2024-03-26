@@ -71,9 +71,9 @@ __attribute__((objc_direct_members))
     object_getInstanceVariable(self, "_viewModel", reinterpret_cast<void **>(&_viewModel));
     [_viewModel release];
     
-    id _channelName;
-    object_getInstanceVariable(self, "_channelName", reinterpret_cast<void **>(&_channelName));
-    [_channelName release];
+    id _channelID;
+    object_getInstanceVariable(self, "_channelID", reinterpret_cast<void **>(&_channelID));
+    [_channelID release];
     
     id _cellRegistration;
     object_getInstanceVariable(self, "_cellRegistration", reinterpret_cast<void **>(&_cellRegistration));
@@ -100,18 +100,18 @@ __attribute__((objc_direct_members))
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.viewModel loadDataSourceWithCompletionHandler:^(NSError * _Nullable error) {
+    [self.viewModel loadDataSourceWithChannelID:self.channelID completionHandler:^(NSError * _Nullable error) {
         assert(!error);
     }];
 }
 
-- (ThreadsViewModel *)viewModel __attribute__((objc_direct)) {
+- (ThreadsViewModel *)viewModel {
     ThreadsViewModel *viewModel;
     object_getInstanceVariable(self, "_viewModel", reinterpret_cast<void **>(&viewModel));
     
     if (viewModel) return viewModel;
     
-    viewModel = [[ThreadsViewModel alloc] initWithChannelID:self.channelID dataSource:[self makeDataSource]];
+    viewModel = [[ThreadsViewModel alloc] initWithDataSource:[self makeDataSource]];
     
     object_setInstanceVariable(self, "_viewModel", [viewModel retain]);
     return [viewModel autorelease];

@@ -12,16 +12,14 @@
 
 __attribute__((objc_direct_members))
 @interface ThreadsViewModel ()
-@property (copy, readonly, nonatomic) NSString *channelID;
 @property (retain, readonly, nonatomic) id dataSource;
 @property (retain, nonatomic, readonly) dispatch_queue_t queue;
 @end
 
 @implementation ThreadsViewModel
 
-- (instancetype)initWithChannelID:(NSString *)channelID dataSource:(id)dataSource {
+- (instancetype)initWithDataSource:(id)dataSource {
     if (self = [super init]) {
-        _channelID = [channelID copy];
         _dataSource = [dataSource retain];
         
         dispatch_queue_attr_t attr = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_USER_INITIATED, QOS_MIN_RELATIVE_PRIORITY);
@@ -32,15 +30,13 @@ __attribute__((objc_direct_members))
 }
 
 - (void)dealloc {
-    [_channelID release];
     [_dataSource release];
     dispatch_release(_queue);
     [super dealloc];
 }
 
-- (void)loadDataSourceWithCompletionHandler:(void (^)(NSError * _Nullable))completionaHandler {
+- (void)loadDataSourceWithChannelID:(NSString *)channelID completionHandler:(void (^)(NSError * _Nullable))completionaHandler {
     auto queue = self.queue;
-    NSString *channelID = self.channelID;
     id dataSource = self.dataSource;
     
     dispatch_async(queue, ^{

@@ -27,6 +27,11 @@
 		4F55D8B02BA2BD6B009A573B /* NanoSlackWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4F55D8A32BA2BD6B009A573B /* NanoSlackWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4F665F3B2BA8AA380099655A /* SlackCore in Frameworks */ = {isa = PBXBuildFile; productRef = 4F665F3A2BA8AA380099655A /* SlackCore */; };
 		4F69EA902BA8590F00B43E58 /* CrownView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F69EA8F2BA8590F00B43E58 /* CrownView.mm */; };
+		4F727E1C2BB2D6D600055684 /* RepliesViewModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F727E1B2BB2D6D600055684 /* RepliesViewModel.mm */; };
+		4F727E1F2BB2FA3900055684 /* RepliesSectionModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F727E1E2BB2FA3900055684 /* RepliesSectionModel.mm */; };
+		4F727E222BB2FA4500055684 /* RepliesItemModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F727E212BB2FA4500055684 /* RepliesItemModel.mm */; };
+		4F727E472BB319B100055684 /* RepliesCollectionViewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F727E462BB319B100055684 /* RepliesCollectionViewCellView.swift */; };
+		4F727E4C2BB319D900055684 /* RepliesCollectionViewCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F727E4B2BB319D900055684 /* RepliesCollectionViewCell.mm */; };
 		4F7C43232BAC972900B78CF3 /* ProfilesViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C43222BAC972900B78CF3 /* ProfilesViewController.mm */; };
 		4F7C43272BAC9BE200B78CF3 /* ThreadsViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C43262BAC9BE200B78CF3 /* ThreadsViewController.mm */; };
 		4F8E6B7A2BB139B400932BB3 /* ThreadsCollectionViewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E6B792BB139B400932BB3 /* ThreadsCollectionViewCellView.swift */; };
@@ -100,6 +105,15 @@
 		4F55D8A32BA2BD6B009A573B /* NanoSlackWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NanoSlackWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F69EA8E2BA8590F00B43E58 /* CrownView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CrownView.hpp; sourceTree = "<group>"; };
 		4F69EA8F2BA8590F00B43E58 /* CrownView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CrownView.mm; sourceTree = "<group>"; };
+		4F727E1A2BB2D6D600055684 /* RepliesViewModel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RepliesViewModel.hpp; sourceTree = "<group>"; };
+		4F727E1B2BB2D6D600055684 /* RepliesViewModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RepliesViewModel.mm; sourceTree = "<group>"; };
+		4F727E1D2BB2FA3900055684 /* RepliesSectionModel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RepliesSectionModel.hpp; sourceTree = "<group>"; };
+		4F727E1E2BB2FA3900055684 /* RepliesSectionModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RepliesSectionModel.mm; sourceTree = "<group>"; };
+		4F727E202BB2FA4500055684 /* RepliesItemModel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RepliesItemModel.hpp; sourceTree = "<group>"; };
+		4F727E212BB2FA4500055684 /* RepliesItemModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RepliesItemModel.mm; sourceTree = "<group>"; };
+		4F727E462BB319B100055684 /* RepliesCollectionViewCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepliesCollectionViewCellView.swift; sourceTree = "<group>"; };
+		4F727E4A2BB319D900055684 /* RepliesCollectionViewCell.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RepliesCollectionViewCell.hpp; sourceTree = "<group>"; };
+		4F727E4B2BB319D900055684 /* RepliesCollectionViewCell.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RepliesCollectionViewCell.mm; sourceTree = "<group>"; };
 		4F7C43212BAC972900B78CF3 /* ProfilesViewController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ProfilesViewController.hpp; sourceTree = "<group>"; };
 		4F7C43222BAC972900B78CF3 /* ProfilesViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ProfilesViewController.mm; sourceTree = "<group>"; };
 		4F7C43252BAC9BE200B78CF3 /* ThreadsViewController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ThreadsViewController.hpp; sourceTree = "<group>"; };
@@ -233,6 +247,15 @@
 			children = (
 				4F8E6BF42BB1DECF00932BB3 /* RepliesViewController.hpp */,
 				4F8E6BF52BB1DECF00932BB3 /* RepliesViewController.mm */,
+				4F727E1A2BB2D6D600055684 /* RepliesViewModel.hpp */,
+				4F727E1B2BB2D6D600055684 /* RepliesViewModel.mm */,
+				4F727E1D2BB2FA3900055684 /* RepliesSectionModel.hpp */,
+				4F727E1E2BB2FA3900055684 /* RepliesSectionModel.mm */,
+				4F727E202BB2FA4500055684 /* RepliesItemModel.hpp */,
+				4F727E212BB2FA4500055684 /* RepliesItemModel.mm */,
+				4F727E4A2BB319D900055684 /* RepliesCollectionViewCell.hpp */,
+				4F727E4B2BB319D900055684 /* RepliesCollectionViewCell.mm */,
+				4F727E462BB319B100055684 /* RepliesCollectionViewCellView.swift */,
 			);
 			path = Replies;
 			sourceTree = "<group>";
@@ -389,10 +412,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F8E6B7D2BB13ABA00932BB3 /* ThreadsCollectionViewCell.mm in Sources */,
+				4F727E4C2BB319D900055684 /* RepliesCollectionViewCell.mm in Sources */,
+				4F727E222BB2FA4500055684 /* RepliesItemModel.mm in Sources */,
 				4FB1FEE02BA74A6300D07317 /* DynamicView.mm in Sources */,
 				4FB1FEC62BA704D000D07317 /* DynamicViewController.mm in Sources */,
+				4F727E472BB319B100055684 /* RepliesCollectionViewCellView.swift in Sources */,
 				4FB1FEF62BA7603A00D07317 /* DynamicListPlatterCell.mm in Sources */,
 				4F7C43232BAC972900B78CF3 /* ProfilesViewController.mm in Sources */,
+				4F727E1C2BB2D6D600055684 /* RepliesViewModel.mm in Sources */,
 				4F012BD92BA2BE9A0060CA7D /* main.mm in Sources */,
 				4F69EA902BA8590F00B43E58 /* CrownView.mm in Sources */,
 				4F8E6B7A2BB139B400932BB3 /* ThreadsCollectionViewCellView.swift in Sources */,
@@ -401,6 +428,7 @@
 				4F0090AD2BA9FB7400AF898E /* ChannelsCollectionViewCellView.swift in Sources */,
 				4F001EF62BA80CAA008C0CCC /* ChannelsCollectionViewCell.mm in Sources */,
 				4F012C5F2BA368C30060CA7D /* SceneDelegate.mm in Sources */,
+				4F727E1F2BB2FA3900055684 /* RepliesSectionModel.mm in Sources */,
 				4F8E6BF62BB1DECF00932BB3 /* RepliesViewController.mm in Sources */,
 				4F0090A82BA9CA2400AF898E /* ChannelsItemModel.mm in Sources */,
 				4F7C43272BAC9BE200B78CF3 /* ThreadsViewController.mm in Sources */,

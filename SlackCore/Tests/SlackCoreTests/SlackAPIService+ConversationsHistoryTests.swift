@@ -49,8 +49,8 @@ extension SlackAPIService {
         }
         
         private func getFirstChannelID() async throws -> String {
-            let conversations: SlackAPIService.ConversationsListResponse = try await SlackAPIService.shared.conversationsList()
-            return try #require(conversations.channels.first?.id)
+            let conversationsList: SlackAPIService.ConversationsListResponse = try await SlackAPIService.shared.conversationsList()
+            return try #require(conversationsList.channels.first?.id)
         }
     }
 }

@@ -1,0 +1,42 @@
+{
+    "ok": true,
+    "profile": {
+        "title": "Title",
+        "phone": "",
+        "skype": "",
+        "real_name": "First Second",
+        "real_name_normalized": "First Second",
+        "display_name": "Test",
+        "display_name_normalized": "Test",
+        "fields": {
+            "Xf06PAPGC4S0": {
+                "value": "Title",
+                "alt": ""
+            },
+            "Xf06P86X7NTD": {
+                "value": "Zoee",
+                "alt": ""
+            }
+        },
+        "status_text": "Working remotely",
+        "status_emoji": ":house_with_garden:",
+        "status_emoji_display_info": [
+            {
+                "emoji_name": "house_with_garden",
+                "display_url": "https://a.slack-edge.com/production-standard-emoji-assets/14.0/apple-large/1f3e1.png",
+                "unicode": "1f3e1"
+            }
+        ],
+        "status_expiration": 1711551599,
+        "avatar_hash": "g40d17ce0d92",
+        "first_name": "First",
+        "last_name": "Second",
+        "image_24": "https://secure.gravatar.com/avatar/40d17ce0d92ef41e57aad2e1c8876857.jpg?s=24&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0014-24.png",
+        "image_32": "https://secure.gravatar.com/avatar/40d17ce0d92ef41e57aad2e1c8876857.jpg?s=32&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0014-32.png",
+        "image_48": "https://secure.gravatar.com/avatar/40d17ce0d92ef41e57aad2e1c8876857.jpg?s=48&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0014-48.png",
+        "image_72": "https://secure.gravatar.com/avatar/40d17ce0d92ef41e57aad2e1c8876857.jpg?s=72&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0014-72.png",
+        "image_192": "https://secure.gravatar.com/avatar/40d17ce0d92ef41e57aad2e1c8876857.jpg?s=192&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0014-192.png",
+        "image_512": "https://secure.gravatar.com/avatar/40d17ce0d92ef41e57aad2e1c8876857.jpg?s=512&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0014-512.png",
+        "status_text_canonical": "Working remotely"
+    }
+}

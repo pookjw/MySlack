@@ -1,0 +1,125 @@
+{
+    "ok": true,
+    "messages": [
+        {
+            "user": "U06PLVBNDRP",
+            "type": "message",
+            "ts": "1711198257.317869",
+            "client_msg_id": "ea6b5b60-a7b3-4b78-9fc4-85ebfa5c9970",
+            "text": "*Bold*",
+            "team": "T06PAPG94UU",
+            "thread_ts": "1711198257.317869",
+            "reply_count": 3,
+            "reply_users_count": 1,
+            "latest_reply": "1711446463.733249",
+            "reply_users": [
+                "U06PLVBNDRP"
+            ],
+            "is_locked": false,
+            "subscribed": true,
+            "last_read": "1711446463.733249",
+            "blocks": [
+                {
+                    "type": "rich_text",
+                    "block_id": "U/3SC",
+                    "elements": [
+                        {
+                            "type": "rich_text_section",
+                            "elements": [
+                                {
+                                    "type": "text",
+                                    "text": "Bold",
+                                    "style": {
+                                        "bold": true
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "user": "U06PLVBNDRP",
+            "type": "message",
+            "ts": "1711446462.274619",
+            "client_msg_id": "1b8e2a8b-e937-4d89-b77d-a877ec157bb9",
+            "text": "1",
+            "team": "T06PAPG94UU",
+            "thread_ts": "1711198257.317869",
+            "parent_user_id": "U06PLVBNDRP",
+            "blocks": [
+                {
+                    "type": "rich_text",
+                    "block_id": "BrZSZ",
+                    "elements": [
+                        {
+                            "type": "rich_text_section",
+                            "elements": [
+                                {
+                                    "type": "text",
+                                    "text": "1"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "user": "U06PLVBNDRP",
+            "type": "message",
+            "ts": "1711446463.006519",
+            "client_msg_id": "2461f2b2-00dc-42b3-9ce3-d3db4661882d",
+            "text": "2",
+            "team": "T06PAPG94UU",
+            "thread_ts": "1711198257.317869",
+            "parent_user_id": "U06PLVBNDRP",
+            "blocks": [
+                {
+                    "type": "rich_text",
+                    "block_id": "HiD03",
+                    "elements": [
+                        {
+                            "type": "rich_text_section",
+                            "elements": [
+                                {
+                                    "type": "text",
+                                    "text": "2"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "user": "U06PLVBNDRP",
+            "type": "message",
+            "ts": "1711446463.733249",
+            "client_msg_id": "4361ae81-a893-4654-b4a2-1b32fac8447f",
+            "text": "3",
+            "team": "T06PAPG94UU",
+            "thread_ts": "1711198257.317869",
+            "parent_user_id": "U06PLVBNDRP",
+            "blocks": [
+                {
+                    "type": "rich_text",
+                    "block_id": "DslQF",
+                    "elements": [
+                        {
+                            "type": "rich_text_section",
+                            "elements": [
+                                {
+                                    "type": "text",
+                                    "text": "3"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "has_more": false
+}
