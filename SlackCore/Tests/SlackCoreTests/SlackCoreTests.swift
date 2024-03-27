@@ -17,7 +17,7 @@ final class SlackCoreTests: XCTestCase {
         
         var configuration: Testing.Configuration = .init()
         
-        configuration.testFilter = Testing.Configuration.TestFilter(includingAnyOf: [.init(kind: .stringLiteral("testGetUserProfileDictionary"))])
+//        configuration.testFilter = Testing.Configuration.TestFilter(includingAnyOf: [.init(kind: .stringLiteral("testGetUserProfileDictionary"))])
         
         configuration.isParallelizationEnabled = false
         configuration.eventHandler = { event, context in
@@ -43,14 +43,14 @@ final class SlackCoreTests: XCTestCase {
 }
 
 extension XCTSourceCodeContext {
-  fileprivate convenience init(_ sourceContext: SourceContext) {
-    let addresses = sourceContext.backtrace?.addresses.map { $0 as NSNumber } ?? []
-    let sourceLocation = sourceContext.sourceLocation.map { sourceLocation in
-      XCTSourceCodeLocation(
-        filePath: sourceLocation._filePath,
-        lineNumber: sourceLocation.line
-      )
+    fileprivate convenience init(_ sourceContext: SourceContext) {
+        let addresses = sourceContext.backtrace?.addresses.map { $0 as NSNumber } ?? []
+        let sourceLocation = sourceContext.sourceLocation.map { sourceLocation in
+            XCTSourceCodeLocation(
+                filePath: sourceLocation._filePath,
+                lineNumber: sourceLocation.line
+            )
+        }
+        self.init(callStackAddresses: addresses, location: sourceLocation)
     }
-    self.init(callStackAddresses: addresses, location: sourceLocation)
-  }
 }

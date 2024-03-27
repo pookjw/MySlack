@@ -17,7 +17,7 @@ extension SlackAPIService {
         try await request(
             path: "/api/users.profile.get",
             queryItems: [
-                .init(name: "userID", value: userID)
+                .init(name: "user", value: userID)
             ]
         )
     }

@@ -32,22 +32,25 @@ public struct ThreadsCollectionViewCellView: View {
         return hostingViewable.sizeThatFits(in: size)
     }
     
+    @State private var viewModel: ThreadsCollectionViewCellViewModel = .init()
     private let itemModel: ThreadsItemModel?
-    
-    private var text: String? {
-        guard let message: [String: Any] = itemModel?.userInfo?[ThreadsItemModel.messageKey] as? [String: Any] else {
-            return nil
-        }
-        
-        return message["text"] as? String
-    }
     
     init(itemModel: ThreadsItemModel?) {
         self.itemModel = itemModel
     }
     
     public var body: some View {
-        Text(text ?? "null")
+        VStack {
+            Text(viewModel.profile?.displayName ?? "null")
+            
+            Color.pink
+                .frame(height: 2.0)
+            
+            Text(viewModel.text ?? "null")
+        }
+            .task(id: itemModel) { 
+                try! await viewModel.load(itemModel: itemModel)
+            }
     }
 }
 
