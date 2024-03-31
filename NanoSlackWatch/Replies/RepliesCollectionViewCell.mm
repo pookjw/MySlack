@@ -12,10 +12,16 @@
 
 __attribute__((objc_direct_members))
 @interface RepliesCollectionViewCell ()
+@property (class, assign, readonly, nonatomic) void *context;
 @property (retain, readonly, nonatomic) id hostingController;
 @end
 
 @implementation RepliesCollectionViewCell
+
++ (void *)context {
+    static void *context = &context;
+    return context;
+}
 
 + (void)load {
     [self registerMethodsIntoIsa:[self dynamicIsa] implIsa:self];
@@ -59,9 +65,18 @@ __attribute__((objc_direct_members))
 - (void)dealloc {
     id _hostingController;
     object_getInstanceVariable(self, "_hostingController", reinterpret_cast<void **>(&_hostingController));
+    [_hostingController removeObserver:self forKeyPath:@"preferredContentSize" context:RepliesCollectionViewCell.context];
     [_hostingController release];
     
     [super dealloc];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (context == RepliesCollectionViewCell.context) {
+        [self invalidateIntrinsicContentSize];
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 - (id)preferredLayoutAttributesFittingAttributes:(id)layoutAttributes {
@@ -86,6 +101,8 @@ __attribute__((objc_direct_members))
     if (hostingController) return hostingController;
     
     hostingController = NanoSlackWatch::ThreadsCollectionViewCellView::makeHostingController();
+    
+    [hostingController addObserver:self forKeyPath:@"preferredContentSize" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:RepliesCollectionViewCell.context];
     
     object_setInstanceVariable(self, "_hostingController", [hostingController retain]);
     

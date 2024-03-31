@@ -40,17 +40,48 @@ public struct ThreadsCollectionViewCellView: View {
     }
     
     public var body: some View {
-        VStack {
-            Text(viewModel.profile?.displayName ?? "null")
-            
-            Color.pink
-                .frame(height: 2.0)
-            
-            Text(viewModel.text ?? "null")
-        }
-            .task(id: itemModel) { 
-                try! await viewModel.load(itemModel: itemModel)
+        VStack(alignment: .leading) {
+            HStack {
+                AsyncImage(url: viewModel.profile?.image72) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView()
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .clipShape(Capsule(style: .continuous))
+                    case .failure(let error):
+                        Text(error.localizedDescription)
+                    @unknown default:
+                        EmptyView()
+                    }
+                }
+                .frame(width: 24.0, height: 24.0)
+                
+                if let displayName = viewModel.profile?.displayName {
+                    Text(displayName)
+                }
             }
+            
+            Color.secondary
+                .frame(height: 1.0)
+            
+            if let body: AttributedString = viewModel.body {
+                Text(body)
+            } else {
+                ProgressView()
+            }
+        }
+        .padding()
+        .task(id: itemModel) {
+            do {
+                try await viewModel.load(itemModel: itemModel)
+            } catch _ as CancellationError {
+                
+            } catch {
+                fatalError(error.localizedDescription)
+            }
+        }
     }
 }
 

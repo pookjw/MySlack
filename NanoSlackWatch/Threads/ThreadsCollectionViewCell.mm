@@ -12,10 +12,16 @@
 
 __attribute__((objc_direct_members))
 @interface ThreadsCollectionViewCell ()
+@property (class, assign, readonly, nonatomic) void *context;
 @property (retain, readonly, nonatomic) id hostingController;
 @end
 
 @implementation ThreadsCollectionViewCell
+
++ (void *)context {
+    static void *context = &context;
+    return context;
+}
 
 + (void)load {
     [self registerMethodsIntoIsa:[self dynamicIsa] implIsa:self];
@@ -50,11 +56,6 @@ __attribute__((objc_direct_members))
     return self;
 }
 
-- (void)prepareForReuse {
-    [super prepareForReuse];
-    NanoSlackWatch::ThreadsCollectionViewCellView::updateHostingController(self.hostingController, nil);
-}
-
 - (void)dealloc {
     id _hostingController;
     object_getInstanceVariable(self, "_hostingController", reinterpret_cast<void **>(&_hostingController));
@@ -62,20 +63,9 @@ __attribute__((objc_direct_members))
     
     [super dealloc];
 }
-
-- (id)preferredLayoutAttributesFittingAttributes:(id)layoutAttributes {
-    id result = [layoutAttributes copy]; // PUICListCollectionViewLayoutAttributes *
-    
-    CGSize oldSize = reinterpret_cast<CGSize (*)(id, SEL)>(objc_msgSend)(result, sel_registerName("size"));
-    
-    id hostingController = self.hostingController;
-    id hostingView = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(hostingController, sel_registerName("view"));
-    
-    CGSize newSize = reinterpret_cast<CGSize (*)(id, SEL, CGSize, float, float)>(objc_msgSend)(hostingView, sel_registerName("systemLayoutSizeFittingSize:withHorizontalFittingPriority:verticalFittingPriority:"), CGSizeMake(oldSize.width, CGFLOAT_MAX), 1000.f, 50.f);
-    
-    reinterpret_cast<void (*)(id, SEL, CGSize)>(objc_msgSend)(result, sel_registerName("setSize:"), newSize);
-    
-    return [result autorelease];
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    NanoSlackWatch::ThreadsCollectionViewCellView::updateHostingController(self.hostingController, nil);
 }
 
 - (id)hostingController __attribute__((objc_direct)) {

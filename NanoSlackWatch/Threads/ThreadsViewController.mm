@@ -52,6 +52,9 @@ __attribute__((objc_direct_members))
     
     IMP collectionView_didSelectItemAtIndexPath = class_getMethodImplementation(implIsa, @selector(collectionView:didSelectItemAtIndexPath:));
     assert(class_addMethod(isa, @selector(collectionView:didSelectItemAtIndexPath:), collectionView_didSelectItemAtIndexPath, NULL));
+    
+    IMP collectionView_layout_heightForItemAtIndexPath = class_getMethodImplementation(implIsa, @selector(collectionView:layout:heightForItemAtIndexPath:));
+    assert(class_addMethod(isa, @selector(collectionView:layout:heightForItemAtIndexPath:), collectionView_layout_heightForItemAtIndexPath, NULL));
 }
 
 - (instancetype)initWithChannelID:(NSString *)channelID channelName:(NSString *)channelName {
@@ -102,6 +105,10 @@ __attribute__((objc_direct_members))
     [super viewDidLoad];
     [self.viewModel loadDataSourceWithChannelID:self.channelID completionHandler:^(NSError * _Nullable error) {
         assert(!error);
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            id collectionViewLayout = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(self.view, sel_registerName("collectionViewLayout"));
+//            reinterpret_cast<void (*)(id, SEL)>(objc_msgSend)(collectionViewLayout, sel_registerName("invalidateLayout"));
+//        });
     }];
 }
 
@@ -166,6 +173,12 @@ __attribute__((objc_direct_members))
             [self pushToRepliesViewControllerWithChannelID:self.channelID threadID:threadID];
         });
     }];
+}
+
+- (CGFloat)collectionView:(id)collectionView layout:(id)layout heightForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGRect bounds = reinterpret_cast<CGRect (*)(id, SEL)>(objc_msgSend)(collectionView, sel_registerName("bounds"));
+    UIEdgeInsets effectiveContentInset = reinterpret_cast<UIEdgeInsets (*)(id, SEL)>(objc_msgSend)(collectionView, sel_registerName("_effectiveContentInset"));
+    return CGRectGetHeight(bounds) - effectiveContentInset.top - effectiveContentInset.bottom;
 }
 
 @end

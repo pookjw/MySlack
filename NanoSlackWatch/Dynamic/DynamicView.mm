@@ -30,6 +30,9 @@ OBJC_EXPORT id objc_msgSendSuper2(void);
     IMP setBackgroundColor = class_getMethodImplementation(implIsa, @selector(setBackgroundColor:));
     assert(class_addMethod(isa, @selector(setBackgroundColor:), setBackgroundColor, NULL));
     
+    IMP description = class_getMethodImplementation(implIsa, @selector(description));
+    assert(class_addMethod(isa, @selector(description), description, NULL));
+    
     IMP frame = class_getMethodImplementation(implIsa, @selector(frame));
     assert(class_addMethod(isa, @selector(frame), frame, NULL));
     
@@ -57,6 +60,18 @@ OBJC_EXPORT id objc_msgSendSuper2(void);
     IMP addSubview = class_getMethodImplementation(implIsa, @selector(addSubview:));
     assert(class_addMethod(isa, @selector(addSubview:), addSubview, NULL));
     
+    IMP observeValueForKeyPath_ofObject_change_context = class_getMethodImplementation(implIsa, @selector(observeValueForKeyPath:ofObject:change:context:));
+    assert(class_addMethod(isa, @selector(observeValueForKeyPath:ofObject:change:context:), observeValueForKeyPath_ofObject_change_context, NULL));
+    
+    IMP layoutIfNeeded = class_getMethodImplementation(implIsa, @selector(layoutIfNeeded));
+    assert(class_addMethod(isa, @selector(layoutIfNeeded), layoutIfNeeded, NULL));
+    
+    IMP invalidateIntrinsicContentSize = class_getMethodImplementation(implIsa, @selector(invalidateIntrinsicContentSize));
+    assert(class_addMethod(isa, @selector(invalidateIntrinsicContentSize), invalidateIntrinsicContentSize, NULL));
+    
+    IMP setNeedsLayout = class_getMethodImplementation(implIsa, @selector(setNeedsLayout));
+    assert(class_addMethod(isa, @selector(setNeedsLayout), setNeedsLayout, NULL));
+    
     IMP _wheelChangedWithEvent = class_getMethodImplementation(implIsa, @selector(_wheelChangedWithEvent:));
     assert(class_addMethod(isa, @selector(_wheelChangedWithEvent:), _wheelChangedWithEvent, NULL));
 }
@@ -83,6 +98,10 @@ OBJC_EXPORT id objc_msgSendSuper2(void);
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
     objc_super superInfo = { self, [self class] };
     reinterpret_cast<void (*)(objc_super *, SEL, id)>(objc_msgSendSuper2)(&superInfo, _cmd, backgroundColor);
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%s: %p; frame = %@>", class_getName([self class]), reinterpret_cast<void *>(self), NSStringFromCGRect(self.frame)];
 }
 
 - (CGRect)frame {
@@ -125,9 +144,29 @@ OBJC_EXPORT id objc_msgSendSuper2(void);
     reinterpret_cast<void (*)(objc_super *, SEL, NSUInteger)>(objc_msgSendSuper2)(&superInfo, _cmd, autoresizingMask);
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    objc_super superInfo = { self, [self class] };
+    reinterpret_cast<void (*)(objc_super *, SEL, id, id, id, void *)>(objc_msgSendSuper2)(&superInfo, _cmd, keyPath, object, change, context);
+}
+
 - (void)addSubview:(id)subview {
     objc_super superInfo = { self, [self class] };
     reinterpret_cast<void (*)(objc_super *, SEL, id)>(objc_msgSendSuper2)(&superInfo, _cmd, subview);
+}
+
+- (void)layoutIfNeeded {
+    objc_super superInfo = { self, [self class] };
+    reinterpret_cast<void (*)(objc_super *, SEL)>(objc_msgSendSuper2)(&superInfo, _cmd);
+}
+
+- (void)invalidateIntrinsicContentSize {
+    objc_super superInfo = { self, [self class] };
+    reinterpret_cast<void (*)(objc_super *, SEL)>(objc_msgSendSuper2)(&superInfo, _cmd);
+}
+
+- (void)setNeedsLayout {
+    objc_super superInfo = { self, [self class] };
+    reinterpret_cast<void (*)(objc_super *, SEL)>(objc_msgSendSuper2)(&superInfo, _cmd);
 }
 
 - (void)_wheelChangedWithEvent:(id)event {

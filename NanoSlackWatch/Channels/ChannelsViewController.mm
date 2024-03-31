@@ -130,7 +130,7 @@ __attribute__((objc_direct_members))
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.viewModel loadDataSourceWithCompletionHandler:^(NSError * _Nullable error) {
+    [self.viewModel reloadDataSourceWithSearchText:nil completionHandler:^(NSError * _Nullable error) {
         assert(!error);
     }];
 }
@@ -205,7 +205,8 @@ __attribute__((objc_direct_members))
 - (void)updateSearchResultsForSearchController:(id)searchController {
     id searchField = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(searchController, sel_registerName("searchField"));
     NSString *text = reinterpret_cast<id (*)(id, SEL)>(objc_msgSend)(searchField, sel_registerName("text"));
-    NSLog(@"%@", text);
+    
+    [self.viewModel filterWithSearchText:text completionHandler:nil];
 }
 
 - (void)profileBarButtomItemDidTrigger:(id)sender {

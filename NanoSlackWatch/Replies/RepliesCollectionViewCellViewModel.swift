@@ -1,5 +1,5 @@
 //
-//  ThreadsCollectionViewCellViewModel.swift
+//  RepliesCollectionViewCellViewModel.swift
 //  NanoSlackWatch
 //
 //  Created by Jinwoo Kim on 3/28/24.
@@ -8,7 +8,7 @@
 import Observation
 import SlackCore
 
-actor ThreadsCollectionViewCellViewModel {
+actor RepliesCollectionViewCellViewModel {
     @MainActor var profile: SlackCore.SlackAPIService.UserProfileGetResponse.Profile? {
         get {
             access(keyPath: \.profile)
@@ -20,42 +20,38 @@ actor ThreadsCollectionViewCellViewModel {
             }
         }
     }
-    @MainActor var body: AttributedString? {
+    @MainActor var text: String? {
         get {
-            access(keyPath: \.body)
-            return _body
+            access(keyPath: \.text)
+            return _text
         }
         set {
-            withMutation(keyPath: \.body) {
-                _body = newValue
+            withMutation(keyPath: \.text) {
+                _text = newValue
             }
         }
     }
     
     @MainActor private var _profile: SlackCore.SlackAPIService.UserProfileGetResponse.Profile?
-    @MainActor private var _body: AttributedString?
+    @MainActor private var _text: String?
     private let _$observationRegistrar = Observation.ObservationRegistrar()
     
-    func load(itemModel: ThreadsItemModel?) async throws {
+    func load(itemModel: RepliesItemModel?) async throws {
         await MainActor.run {
             self.profile = nil
-            self.body = nil
+            self.text = nil
         }
         
-        guard let message: [String: Any] = itemModel?.userInfo?[ThreadsItemModel.messageKey] as? [String: Any] else {
+        guard let message: [String: Any] = itemModel?.userInfo?[RepliesItemModel.messageKey] as? [String: Any] else {
             return
         }
         
-        let body: AttributedString?
-        if let text: String = message["text"] as? String {
-            body = try .init(markdown: text, options: .init(allowsExtendedAttributes: true), baseURL: nil)
-        } else {
-            body = nil
-        }
+        let text: String? = message["text"] as? String
+        
         guard !Task.isCancelled else { return }
         
         await MainActor.run {
-            self.body = body
+            self.text = text
         }
         
         guard let userID: String = message["user"] as? String else {
@@ -73,18 +69,18 @@ actor ThreadsCollectionViewCellViewModel {
     }
     
     private nonisolated func access<Member>(
-        keyPath: KeyPath<ThreadsCollectionViewCellViewModel , Member>
+        keyPath: KeyPath<RepliesCollectionViewCellViewModel , Member>
     ) {
         _$observationRegistrar.access(self, keyPath: keyPath)
     }
     
     private nonisolated func withMutation<Member, MutationResult>(
-        keyPath: KeyPath<ThreadsCollectionViewCellViewModel , Member>,
+        keyPath: KeyPath<RepliesCollectionViewCellViewModel , Member>,
         _ mutation: () throws -> MutationResult
     ) rethrows -> MutationResult {
         try _$observationRegistrar.withMutation(of: self, keyPath: keyPath, mutation)
     }
 }
 
-extension ThreadsCollectionViewCellViewModel: Observation.Observable {
+extension RepliesCollectionViewCellViewModel: Observation.Observable {
 }

@@ -44,6 +44,7 @@
 		4FB1FECD2BA736D700D07317 /* ChannelsViewModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1FECC2BA736D700D07317 /* ChannelsViewModel.mm */; };
 		4FB1FEE02BA74A6300D07317 /* DynamicView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1FEDF2BA74A6300D07317 /* DynamicView.mm */; };
 		4FB1FEF62BA7603A00D07317 /* DynamicListPlatterCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1FEF52BA7603A00D07317 /* DynamicListPlatterCell.mm */; };
+		4FE3AC7D2BB5882600A34F6F /* RepliesCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE3AC7C2BB5882600A34F6F /* RepliesCollectionViewCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		4FB1FEDF2BA74A6300D07317 /* DynamicView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DynamicView.mm; sourceTree = "<group>"; };
 		4FB1FEF42BA7603A00D07317 /* DynamicListPlatterCell.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DynamicListPlatterCell.hpp; sourceTree = "<group>"; };
 		4FB1FEF52BA7603A00D07317 /* DynamicListPlatterCell.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DynamicListPlatterCell.mm; sourceTree = "<group>"; };
+		4FE3AC7C2BB5882600A34F6F /* RepliesCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepliesCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +261,7 @@
 				4F727E4A2BB319D900055684 /* RepliesCollectionViewCell.hpp */,
 				4F727E4B2BB319D900055684 /* RepliesCollectionViewCell.mm */,
 				4F727E462BB319B100055684 /* RepliesCollectionViewCellView.swift */,
+				4FE3AC7C2BB5882600A34F6F /* RepliesCollectionViewCellViewModel.swift */,
 			);
 			path = Replies;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 			files = (
 				4F8E6B7D2BB13ABA00932BB3 /* ThreadsCollectionViewCell.mm in Sources */,
 				4F727E4C2BB319D900055684 /* RepliesCollectionViewCell.mm in Sources */,
+				4FE3AC7D2BB5882600A34F6F /* RepliesCollectionViewCellViewModel.swift in Sources */,
 				4F727E222BB2FA4500055684 /* RepliesItemModel.mm in Sources */,
 				4FB1FEE02BA74A6300D07317 /* DynamicView.mm in Sources */,
 				4FB1FEC62BA704D000D07317 /* DynamicViewController.mm in Sources */,

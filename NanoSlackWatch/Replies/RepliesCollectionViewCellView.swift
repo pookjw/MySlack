@@ -32,22 +32,53 @@ public struct RepliesCollectionViewCellView: View {
         return hostingViewable.sizeThatFits(in: size)
     }
 
+    @State private var viewModel: RepliesCollectionViewCellViewModel = .init()
     private let itemModel: RepliesItemModel?
-    
-    private var text: String? {
-        guard let message: [String: Any] = itemModel?.userInfo?[RepliesItemModel.messageKey] as? [String: Any] else {
-            return nil
-        }
-        
-        return message["text"] as? String
-    }
     
     init(itemModel: RepliesItemModel?) {
         self.itemModel = itemModel
     }
     
     public var body: some View {
-        Text(text ?? "null")
+        VStack {
+            HStack {
+                AsyncImage(url: viewModel.profile?.image72) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView()
+                    case .success(let image):
+                        image
+                            .resizable()
+//                            .clipShape(RoundedRectangle(cornerRadius: 3.0, style: .continuous))
+                            .clipShape(Capsule(style: .continuous))
+                    case .failure(let error):
+                        Text(error.localizedDescription)
+                    @unknown default:
+                        EmptyView()
+                    }
+                }
+                .frame(width: 24.0, height: 24.0, alignment: .topLeading)
+                
+                if let displayName = viewModel.profile?.displayName {
+                    Text(displayName)
+                }
+            }
+            
+            Color.secondary
+                .frame(height: 1.0)
+            
+            Text(viewModel.text ?? "null")
+        }
+        .padding()
+        .task(id: itemModel) {
+            do {
+                try await viewModel.load(itemModel: itemModel)
+            } catch _ as CancellationError {
+                
+            } catch {
+                fatalError(error.localizedDescription)
+            }
+        }
     }
 }
 

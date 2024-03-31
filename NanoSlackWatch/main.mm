@@ -21,7 +21,7 @@ int main(int argc, char * argv[]) {
     assert(watchKit);
     
     // PUICListCollectionViewLayoutDelegate PUICListCollectionViewDelegate
-    NSLog(@"%@", [NSObject _fd__protocolDescriptionForProtocol:NSProtocolFromString(@"PUICSearchResultsUpdating")]);
+    NSLog(@"%@", [NSObject _fd__protocolDescriptionForProtocol:NSProtocolFromString(@"PUICListCollectionViewLayoutDelegate")]);
 //    NSLog(@"%@", [NSObject _fd__protocolDescriptionForProtocol:NSProtocolFromString(@"PUICCrownInputSequencerDetentsDataSource")]);
     
     int result = UIApplicationMain(argc, argv, @"SPApplication", NSStringFromClass(AppDelegate.class));
